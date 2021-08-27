@@ -9,6 +9,8 @@
   "author": "William Watson",
   "license": "ISC",
   "dependencies": {
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "webpack": "^5.51.1",
+    "webpack-dev-server": "^4.0.0"
   }
 }
