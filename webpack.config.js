@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.js',
 
   // devServer: {
@@ -12,9 +11,12 @@ module.exports = {
   //   inline: true,
   //   hot: true
   // },
+
+  mode: 'development',
+
   output: {
     path: path.resolve(__dirname, 'public'),
-    publicPath: '/public/',
+    publicPath: '/',
     filename: 'bundle.js',
   },
 
