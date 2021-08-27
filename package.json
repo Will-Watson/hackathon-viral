@@ -1,0 +1,14 @@
+{
+  "name": "hackathon-viral",
+  "version": "1.0.0",
+  "description": "game created for mintbean.io hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William Watson",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^3.55.2"
+  }
+}
