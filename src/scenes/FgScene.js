@@ -157,9 +157,8 @@ export default class FgScene extends Phaser.Scene {
     bullet.reset(bulletX, bulletY, this.player.angle);
   }
 
-  hit(enemy, bullet) {
-    bullet.setActive(false);
-    bullet.setVisible(false);
+  hit(bullet, enemy) {
+    bullet.disableBody(true, true);
   }
 
   hitVirus(player, virus) {
