@@ -21,7 +21,7 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
       this.x += moveDistance;
     } else if (this.angle === 90) {
       this.y += moveDistance;
-    } else if (this.angle === 180) {
+    } else if (this.angle === -180) {
       this.x -= moveDistance;
     } else if (this.angle === -90) {
       this.y -= moveDistance;
