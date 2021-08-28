@@ -10,8 +10,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
     this.angle = 0;
 
-    this.fireDelay = 100;
-    this.lastFire = 0;
+    this.fireDelay = 500;
+    this.lastFired = 0;
 
     // << INITIALIZE PLAYER ATTRIBUTES HERE >>
   }
@@ -57,12 +57,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // << INSERT CODE HERE >>
 
     this.updateMovement(cursors);
-    // && time > this.lastFired
     if (cursors.space.isDown) {
       if (player) {
-        console.log('dad');
-        fireBulletFn();
-        this.lastFired = time + this.fireDelay;
+        this.lastFired += 1;
+        if (this.lastFired % 20 === 0) {
+          fireBulletFn();
+        }
       }
     }
   }

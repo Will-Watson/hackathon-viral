@@ -9,8 +9,8 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this);
 
     this.angle = angle;
-    this.speed = Phaser.Math.GetSpeed(800, 1);
-    this.lifespan = 900;
+    this.speed = Phaser.Math.GetSpeed(600, 1);
+    this.lifespan = 1200;
     this.body.setAllowGravity(false);
   }
 
