@@ -9,6 +9,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.world.enable(this);
     this.setCollideWorldBounds(true);
 
+    this.fireDelay = 100;
+    this.lastFire = 0;
+
     // << INITIALIZE PLAYER ATTRIBUTES HERE >>
   }
 
@@ -38,15 +41,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.play('run', true);
       }
     } else {
-      this.play('idle');
       this.setVelocityX(0);
       this.setVelocityY(0);
+      this.play('idle');
     }
   }
 
   // Check which controller button is being pushed and execute movement & animation
-  update(cursors) {
+  update(time, cursors, fireBulletFn) {
     // << INSERT CODE HERE >>
     this.updateMovement(cursors);
+    if (cursors.space.isDown && time > this.lastFired) {
+      fireBulletFn();
+      this.lastFired = time + this.fireDelay;
+    }
   }
 }

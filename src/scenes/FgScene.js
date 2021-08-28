@@ -1,9 +1,12 @@
 import Phaser from 'phaser';
 import Player from '../entities/Player';
+import Bullet from '../entities/Bullet';
 
 export default class FgScene extends Phaser.Scene {
   constructor() {
     super('FgScene');
+    this.fireBullet = this.fireBullet.bind(this);
+    //this.hit = this.hit.bind(this);
   }
 
   preload() {
@@ -25,6 +28,7 @@ export default class FgScene extends Phaser.Scene {
         frameHeight: 216,
       }
     );
+    this.load.image('bullet', 'assets/sprites/Bullet.png');
     // Preload Sounds
     // << LOAD SOUNDS HERE >>
   }
@@ -37,6 +41,14 @@ export default class FgScene extends Phaser.Scene {
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.createAnimations();
+
+    this.bullets = this.physics.add.group({
+      classType: Bullet,
+      runChildUpdate: true,
+      allowGravity: false,
+    });
+
+    this.physics.add.overlap(this.bullets, this.enemy, this.hit, null, this);
     // Create sounds
     // << CREATE SOUNDS HERE >>
     // Create collisions for all entities
@@ -78,6 +90,31 @@ export default class FgScene extends Phaser.Scene {
   update(time, delta) {
     // << DO UPDATE LOGIC HERE >>
     //this.legs.update(this.cursors);
-    this.player.update(this.cursors);
+    this.player.update(time, this.cursors, this.fireBullet);
+  }
+
+  fireBullet(x, y) {
+    const offsetX = 20;
+    const offsetY = -10;
+    let bulletX;
+    let bulletY;
+    if (this.player.angle === 0) {
+      bulletX = this.player.x - offsetX;
+    } else if (this.player.angle === 90) {
+      bulletY = this.player.y - offsetY;
+    } else if (this.player.angle === 180) {
+      bulletX = this.player.x + offsetX;
+    } else if (this.player.angle === -90) {
+      bulletY = this.player.y + offsetY;
+    }
+
+    const bullet = new Bullet(this, bulletX, bulletY, 'bullet').setScale(0.25);
+
+    this.bullets.add(bullet);
+
+    // hit(enemy, bullet){
+    //   bullet.setActive(false);
+    //   bullet.setVisible(false);
+    // }
   }
 }
