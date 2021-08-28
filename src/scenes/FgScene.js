@@ -83,6 +83,14 @@ export default class FgScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+    this.anims.create({
+      key: 'shoot',
+      frames: this.anims.generateFrameNumbers('soldierHandgun', {
+        start: 55,
+        end: 58,
+      }),
+      frameRate: 10,
+    });
   }
 
   // time: total time elapsed (ms)

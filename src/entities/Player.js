@@ -61,6 +61,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       if (player) {
         this.lastFired += 1;
         if (this.lastFired % 20 === 0) {
+          this.play('shoot', true);
           fireBulletFn();
         }
       }
