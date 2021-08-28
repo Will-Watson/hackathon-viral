@@ -8,6 +8,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.world.enable(this);
     this.setCollideWorldBounds(true);
+    this.angle = 0;
 
     this.fireDelay = 100;
     this.lastFire = 0;
@@ -18,24 +19,28 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   updateMovement(cursors) {
     if (cursors.left.isDown) {
       this.setAngle(180);
+      this.angle = 180;
       this.setVelocityX(-360);
       if (this.body.touching.down) {
         this.play('run', true);
       }
     } else if (cursors.right.isDown) {
       this.setAngle(0);
+      this.angle = 0;
       this.setVelocityX(360);
       if (this.body.touching.down) {
         this.play('run', true);
       }
     } else if (cursors.up.isDown) {
       this.setAngle(-90);
+      this.angle = -90;
       this.setVelocityY(-360);
       if (this.body.touching.down) {
         this.play('run', true);
       }
     } else if (cursors.down.isDown) {
       this.setAngle(90);
+      this.angle = 90;
       this.setVelocityY(360);
       if (this.body.touching.down) {
         this.play('run', true);
@@ -48,12 +53,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   // Check which controller button is being pushed and execute movement & animation
-  update(time, cursors, fireBulletFn) {
+  update(time, player, cursors, fireBulletFn) {
     // << INSERT CODE HERE >>
+
     this.updateMovement(cursors);
-    if (cursors.space.isDown && time > this.lastFired) {
-      fireBulletFn();
-      this.lastFired = time + this.fireDelay;
+    // && time > this.lastFired
+    if (cursors.space.isDown) {
+      if (player) {
+        console.log('dad');
+        fireBulletFn();
+        this.lastFired = time + this.fireDelay;
+      }
     }
   }
 }

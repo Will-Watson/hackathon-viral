@@ -90,10 +90,10 @@ export default class FgScene extends Phaser.Scene {
   update(time, delta) {
     // << DO UPDATE LOGIC HERE >>
     //this.legs.update(this.cursors);
-    this.player.update(time, this.cursors, this.fireBullet);
+    this.player.update(time, this.player, this.cursors, this.fireBullet);
   }
 
-  fireBullet(x, y) {
+  fireBullet(x, y, angle) {
     const offsetX = 20;
     const offsetY = -10;
     let bulletX;
@@ -108,7 +108,13 @@ export default class FgScene extends Phaser.Scene {
       bulletY = this.player.y + offsetY;
     }
 
-    const bullet = new Bullet(this, bulletX, bulletY, 'bullet').setScale(0.25);
+    const bullet = new Bullet(
+      this,
+      bulletX,
+      bulletY,
+      'bullet',
+      this.player.angle
+    ).setScale(0.75);
 
     this.bullets.add(bullet);
 
