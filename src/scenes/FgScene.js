@@ -104,9 +104,11 @@ export default class FgScene extends Phaser.Scene {
       bulletX = this.player.x - 17;
       bulletY = this.player.y + 35;
     } else if (this.player.angle === 180) {
-      //bulletX = this.player.x + offsetX;
+      bulletX = this.player.x + 35;
+      bulletY = this.player.y + 17;
     } else if (this.player.angle === -90) {
-      //bulletY = this.player.y + offsetY;
+      bulletX = this.player.x + 17;
+      bulletY = this.player.y - 35;
     }
 
     const bullet = new Bullet(
