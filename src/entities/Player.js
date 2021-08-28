@@ -8,7 +8,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.world.enable(this);
     this.setCollideWorldBounds(true);
-    this.angle = 0;
+    this.angle = -90;
 
     this.fireDelay = 500;
     this.lastFired = 0;

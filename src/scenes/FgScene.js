@@ -7,7 +7,7 @@ export default class FgScene extends Phaser.Scene {
   constructor() {
     super('FgScene');
     this.fireBullet = this.fireBullet.bind(this);
-    //this.hit = this.hit.bind(this);
+    this.hit = this.hit.bind(this);
   }
 
   preload() {
@@ -32,15 +32,20 @@ export default class FgScene extends Phaser.Scene {
     // Create game entities
     // << CREATE GAME ENTITIES HERE >>
 
-    this.player = new Player(this, 20, 400, 'soldierHandgun').setScale(0.25);
-    this.greenVirus = new GreenVirus(this, 200, 450, 'greenVirus').setScale(
-      0.75
-    );
-
-    this.physics.add.collider(this.player, this.greenVirus);
-
-    this.cursors = this.input.keyboard.createCursorKeys();
-    this.createAnimations();
+    this.player = new Player(this, 400, 550, 'soldierHandgun').setScale(0.25);
+    this.greenVirus = this.physics.add.group({
+      classType: GreenVirus,
+      runChildUpdate: true,
+      allowGravity: false,
+      key: 'greenVirus',
+      repeat: 1,
+      setXY: {
+        x: Math.floor(Math.random() * 500) + 100,
+        y: Math.floor(Math.random() * 300) + 100,
+        stepX: Math.floor(Math.random() * 100),
+        stepY: Math.floor(Math.random() * 100),
+      },
+    });
 
     this.bullets = this.physics.add.group({
       classType: Bullet,
@@ -48,6 +53,19 @@ export default class FgScene extends Phaser.Scene {
       allowGravity: false,
       maxSize: 40,
     });
+
+    this.physics.add.collider(this.greenVirus, this.greenVirus);
+
+    this.physics.add.collider(
+      this.player,
+      this.greenVirus,
+      this.hitVirus,
+      null,
+      this
+    );
+
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.createAnimations();
 
     this.physics.add.overlap(
       this.bullets,
@@ -137,12 +155,17 @@ export default class FgScene extends Phaser.Scene {
     }
 
     bullet.reset(bulletX, bulletY, this.player.angle);
+  }
 
-    //this.bullets.add(bullet);
+  hit(enemy, bullet) {
+    bullet.setActive(false);
+    bullet.setVisible(false);
+  }
 
-    // hit(enemy, bullet){
-    //   bullet.setActive(false);
-    //   bullet.setVisible(false);
-    // }
+  hitVirus(player, virus) {
+    this.physics.pause();
+
+    player.setTint(0xff0000);
+    this.gameOver = true;
   }
 }
