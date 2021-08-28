@@ -8,14 +8,26 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.world.enable(this);
     this.setCollideWorldBounds(true);
+    this.facingLeft = false;
 
     // << INITIALIZE PLAYER ATTRIBUTES HERE >>
   }
 
   updateMovement(cursors) {
     if (cursors.left.isDown) {
+      if (!this.facingLeft) {
+        this.flipX = !this.flipX;
+        this.facingLeft = true;
+      }
       this.setVelocityX(-360);
+      if (this.body.touching.down) {
+        this.play('run', true);
+      }
     } else if (cursors.right.isDown) {
+      if (this.facingLeft) {
+        this.flipX = !this.flipX;
+        this.facingLeft = false;
+      }
       this.setVelocityX(360);
       if (this.body.touching.down) {
         this.play('run', true);
