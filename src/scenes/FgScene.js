@@ -9,25 +9,25 @@ export default class FgScene extends Phaser.Scene {
   preload() {
     // Preload Sprites
     // << LOAD SPRITES HERE >>
+    // this.load.spritesheet(
+    //   'idleLegs',
+    //   'assets/spritesheets/SoldierIdleFeet.png',
+    //   {
+    //     frameWidth: 253,
+    //     frameHeight: 216,
+    //   }
+    // );
+    // this.load.spritesheet(
+    //   'runningLegs',
+    //   'assets/spritesheets/SoldierRunningFeet.png',
+    //   {
+    //     frameWidth: 253,
+    //     frameHeight: 216,
+    //   }
+    // );
     this.load.spritesheet(
-      'idleLegs',
-      'assets/spritesheets/SoldierIdleFeet.png',
-      {
-        frameWidth: 253,
-        frameHeight: 216,
-      }
-    );
-    this.load.spritesheet(
-      'runningLegs',
-      'assets/spritesheets/SoldierRunningFeet.png',
-      {
-        frameWidth: 253,
-        frameHeight: 216,
-      }
-    );
-    this.load.spritesheet(
-      'idleSoldier',
-      'assets/spritesheets/SoldierHandgunIdle.png',
+      'soldierHandgun',
+      'assets/spritesheets/SoldierHandgun.png',
       {
         frameWidth: 253,
         frameHeight: 216,
@@ -40,8 +40,8 @@ export default class FgScene extends Phaser.Scene {
   create() {
     // Create game entities
     // << CREATE GAME ENTITIES HERE >>
-    this.legs = new Player(this, 20, 400, 'runningLegs').setScale(0.25);
-    this.player = new Player(this, 20, 400, 'idleSoldier').setScale(0.25);
+    //this.legs = new Player(this, 20, 400, 'runningLegs').setScale(0.25);
+    this.player = new Player(this, 20, 400, 'soldierHandgun').setScale(0.25);
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.createAnimations();
@@ -53,19 +53,19 @@ export default class FgScene extends Phaser.Scene {
 
   createAnimations() {
     this.anims.create({
-      key: 'run',
-      frames: this.anims.generateFrameNumbers('runningLegs', {
-        start: 1,
+      key: 'idle',
+      frames: this.anims.generateFrameNumbers('soldierHandgun', {
+        start: 0,
         end: 19,
       }),
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
-      key: 'idle',
-      frames: this.anims.generateFrameNumbers('idleSoldier', {
-        start: 1,
-        end: 19,
+      key: 'run',
+      frames: this.anims.generateFrameNumbers('soldierHandgun', {
+        start: 20,
+        end: 39,
       }),
       frameRate: 10,
       repeat: -1,
@@ -76,7 +76,7 @@ export default class FgScene extends Phaser.Scene {
   // delta: time elapsed (ms) since last update() call. 16.666 ms @ 60fps
   update(time, delta) {
     // << DO UPDATE LOGIC HERE >>
+    //this.legs.update(this.cursors);
     this.player.update(this.cursors);
-    this.legs.update(this.cursors);
   }
 }
