@@ -158,7 +158,7 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    bullet.disableBody(true, true);
+    enemy.disableBody(true, true);
   }
 
   hitVirus(player, virus) {
