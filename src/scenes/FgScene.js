@@ -12,14 +12,7 @@ export default class FgScene extends Phaser.Scene {
   preload() {
     // Preload Sprites
     // << LOAD SPRITES HERE >>
-    // this.load.spritesheet(
-    //   'soldierLegs',
-    //   'assets/spritesheets/SoldierLegs.png',
-    //   {
-    //     frameWidth: 204,
-    //     frameHeight: 124,
-    //   }
-    // );
+
     this.load.spritesheet(
       'soldierHandgun',
       'assets/spritesheets/SoldierHandgun.png',
@@ -36,7 +29,7 @@ export default class FgScene extends Phaser.Scene {
   create() {
     // Create game entities
     // << CREATE GAME ENTITIES HERE >>
-    //this.legs = new Player(this, 20, 400, 'soldierLegs').setScale(0.25);
+
     this.player = new Player(this, 20, 400, 'soldierHandgun').setScale(0.25);
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -59,21 +52,11 @@ export default class FgScene extends Phaser.Scene {
     this.anims.create({
       key: 'idle',
       frames: this.anims.generateFrameNumbers('soldierHandgun', {
-        start: 0,
         end: 19,
       }),
       frameRate: 10,
       repeat: -1,
     });
-    // this.anims.create({
-    //   key: 'runLegs',
-    //   frames: this.anims.generateFrameNumbers('soldierLegs', {
-    //     start: 0,
-    //     end: 19,
-    //   }),
-    //   frameRate: 10,
-    //   repeat: -1,
-    // });
     this.anims.create({
       key: 'run',
       frames: this.anims.generateFrameNumbers('soldierHandgun', {
@@ -88,6 +71,14 @@ export default class FgScene extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('soldierHandgun', {
         start: 55,
         end: 58,
+      }),
+      frameRate: 10,
+    });
+    this.anims.create({
+      key: 'reload',
+      frames: this.anims.generateFrameNumbers('soldierHandgun', {
+        start: 42,
+        end: 54,
       }),
       frameRate: 10,
     });
