@@ -10,19 +10,11 @@ export default class FgScene extends Phaser.Scene {
     // Preload Sprites
     // << LOAD SPRITES HERE >>
     // this.load.spritesheet(
-    //   'idleLegs',
-    //   'assets/spritesheets/SoldierIdleFeet.png',
+    //   'soldierLegs',
+    //   'assets/spritesheets/SoldierLegs.png',
     //   {
-    //     frameWidth: 253,
-    //     frameHeight: 216,
-    //   }
-    // );
-    // this.load.spritesheet(
-    //   'runningLegs',
-    //   'assets/spritesheets/SoldierRunningFeet.png',
-    //   {
-    //     frameWidth: 253,
-    //     frameHeight: 216,
+    //     frameWidth: 204,
+    //     frameHeight: 124,
     //   }
     // );
     this.load.spritesheet(
@@ -40,7 +32,7 @@ export default class FgScene extends Phaser.Scene {
   create() {
     // Create game entities
     // << CREATE GAME ENTITIES HERE >>
-    //this.legs = new Player(this, 20, 400, 'runningLegs').setScale(0.25);
+    //this.legs = new Player(this, 20, 400, 'soldierLegs').setScale(0.25);
     this.player = new Player(this, 20, 400, 'soldierHandgun').setScale(0.25);
 
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -61,6 +53,15 @@ export default class FgScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+    // this.anims.create({
+    //   key: 'runLegs',
+    //   frames: this.anims.generateFrameNumbers('soldierLegs', {
+    //     start: 0,
+    //     end: 19,
+    //   }),
+    //   frameRate: 10,
+    //   repeat: -1,
+    // });
     this.anims.create({
       key: 'run',
       frames: this.anims.generateFrameNumbers('soldierHandgun', {

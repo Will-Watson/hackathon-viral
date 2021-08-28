@@ -25,7 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else if (cursors.down.isDown) {
       this.setVelocityY(360);
     } else {
-      this.anims.play('idle');
+      this.play('idle');
       this.setVelocityX(0);
       this.setVelocityY(0);
     }
