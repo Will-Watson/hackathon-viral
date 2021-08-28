@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Player from '../entities/Player';
 import Bullet from '../entities/Bullet';
+import GreenVirus from '../entities/GreenVirus';
 
 export default class FgScene extends Phaser.Scene {
   constructor() {
@@ -22,6 +23,7 @@ export default class FgScene extends Phaser.Scene {
       }
     );
     this.load.image('bullet', 'assets/sprites/Bullet.png');
+    this.load.image('greenVirus', 'assets/sprites/GreenVirus.png');
     // Preload Sounds
     // << LOAD SOUNDS HERE >>
   }
@@ -31,6 +33,11 @@ export default class FgScene extends Phaser.Scene {
     // << CREATE GAME ENTITIES HERE >>
 
     this.player = new Player(this, 20, 400, 'soldierHandgun').setScale(0.25);
+    this.greenVirus = new GreenVirus(this, 200, 450, 'greenVirus').setScale(
+      0.75
+    );
+
+    this.physics.add.collider(this.player, this.greenVirus);
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.createAnimations();
@@ -39,9 +46,16 @@ export default class FgScene extends Phaser.Scene {
       classType: Bullet,
       runChildUpdate: true,
       allowGravity: false,
+      maxSize: 40,
     });
 
-    this.physics.add.overlap(this.bullets, this.enemy, this.hit, null, this);
+    this.physics.add.overlap(
+      this.bullets,
+      this.greenVirus,
+      this.hit,
+      null,
+      this
+    );
     // Create sounds
     // << CREATE SOUNDS HERE >>
     // Create collisions for all entities
@@ -109,15 +123,22 @@ export default class FgScene extends Phaser.Scene {
       bulletY = this.player.y - 35;
     }
 
-    const bullet = new Bullet(
-      this,
-      bulletX,
-      bulletY,
-      'bullet',
-      this.player.angle
-    ).setScale(0.03);
+    let bullet = this.bullets.getFirstDead();
 
-    this.bullets.add(bullet);
+    if (!bullet) {
+      bullet = new Bullet(
+        this,
+        bulletX,
+        bulletY,
+        'bullet',
+        this.player.angle
+      ).setScale(0.03);
+      this.bullets.add(bullet);
+    }
+
+    bullet.reset(bulletX, bulletY, this.player.angle);
+
+    //this.bullets.add(bullet);
 
     // hit(enemy, bullet){
     //   bullet.setActive(false);
