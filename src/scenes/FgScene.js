@@ -115,15 +115,10 @@ export default class FgScene extends Phaser.Scene {
       font: '32px Courier',
       fill: '#00ff00',
     });
-    this.bulletText = this.add.text(
-      16,
-      568,
-      `Rounds: ${this.player.remainingBullets}/12`,
-      {
-        font: '24px Courier',
-        fill: '#000',
-      }
-    );
+    this.bulletText = this.add.text(16, 568, `Rounds: 12/12`, {
+      font: '24px Courier',
+      fill: '#000',
+    });
   }
 
   createAnimations() {
