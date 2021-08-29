@@ -179,7 +179,6 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    console.log(enemy);
     enemy.disableBody(true, true);
 
     if (this.greenVirus.countActive(true) === 0) {
@@ -222,6 +221,24 @@ export default class FgScene extends Phaser.Scene {
           Phaser.Math.Between(-100, 100),
           Phaser.Math.Between(-100, 100)
         )
+        .setScale(0.75);
+    }
+  }
+  spawnYellowVirus(min, max) {
+    let randomViruses = Phaser.Math.Between(min, max);
+
+    for (let i = 0; i < randomViruses; i++) {
+      this.yellowVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'yellowVirus')
+        .setVelocity(Phaser.Math.Between(50, 200), Phaser.Math.Between(50, 200))
+        .setScale(0.75);
+      this.yellowVirus
+        .create(770, Phaser.Math.Between(30, 570), 'yellowVirus')
+        .setVelocity(Phaser.Math.Between(50, 200), Phaser.Math.Between(50, 200))
+        .setScale(0.75);
+      this.yellowVirus
+        .create(0, Phaser.Math.Between(30, 570), 'yellowVirus')
+        .setVelocity(Phaser.Math.Between(50, 200), Phaser.Math.Between(50, 200))
         .setScale(0.75);
     }
   }
