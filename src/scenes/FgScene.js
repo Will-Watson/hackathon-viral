@@ -12,6 +12,8 @@ export default class FgScene extends Phaser.Scene {
     this.hit = this.hit.bind(this);
     this.score = 0;
     this.scoreText;
+    this.level = 1;
+    this.levelText;
   }
 
   preload() {
@@ -79,6 +81,10 @@ export default class FgScene extends Phaser.Scene {
 
     //scoreboard
     this.scoreText = this.add.text(16, 16, 'Score: 0', {
+      fontSize: '32px',
+      fill: '#000',
+    });
+    this.levelText = this.add.text(16, 50, 'Level: 1', {
       fontSize: '32px',
       fill: '#000',
     });
@@ -182,7 +188,6 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    console.log(enemy);
     enemy.disableBody(true, true);
     if (enemy.texture.key === 'greenVirus') {
       this.score += 10;
@@ -196,6 +201,8 @@ export default class FgScene extends Phaser.Scene {
       this.greenVirus.countActive(true) === 0 &&
       this.yellowVirus.countActive(true) === 0
     ) {
+      this.level += 1;
+      this.levelText.setText('Level: ' + this.level);
       setTimeout(() => {
         this.spawnGreenVirus(5, 8);
         this.spawnYellowVirus(1, 3);
