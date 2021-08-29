@@ -154,6 +154,12 @@ export default class FgScene extends Phaser.Scene {
 
   hit(bullet, enemy) {
     enemy.disableBody(true, true);
+
+    if (this.greenVirus.countActive(true) === 0) {
+      setTimeout(() => {
+        this.spawnVirus(this.greenVirus, 'greenVirus');
+      }, 3000);
+    }
   }
 
   hitVirus(player, virus) {
