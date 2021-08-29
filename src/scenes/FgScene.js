@@ -118,7 +118,7 @@ export default class FgScene extends Phaser.Scene {
     this.bulletText = this.add.text(
       16,
       568,
-      `Rounds: ${this.player.remainingBullets}`,
+      `Rounds: ${this.player.remainingBullets}/12`,
       {
         font: '24px Courier',
         fill: '#000',
@@ -164,7 +164,7 @@ export default class FgScene extends Phaser.Scene {
 
   update(time, delta) {
     this.player.update(time, this.player, this.cursors, this.fireBullet);
-    this.bulletText.setText('Rounds: ' + this.player.remainingBullets);
+    this.bulletText.setText('Rounds: ' + this.player.remainingBullets + '/12');
   }
 
   fireBullet(x, y, angle) {
