@@ -31,6 +31,7 @@ export default class FgScene extends Phaser.Scene {
       }
     );
     this.load.image('bullet', 'assets/sprites/Bullet.png');
+    this.load.image('glock', 'assets/sprites/Glock.png');
     this.load.image('greenVirus', 'assets/sprites/GreenVirus.png');
     this.load.image('yellowVirus', 'assets/sprites/yellowVirus.png');
     this.load.image('blueVirus', 'assets/sprites/blueVirus.png');
@@ -115,7 +116,9 @@ export default class FgScene extends Phaser.Scene {
       font: '32px Courier',
       fill: '#00ff00',
     });
-    this.bulletText = this.add.text(16, 568, `Rounds: 12/12`, {
+    this.add.image(30, 580, 'glock').setScale(0.035);
+
+    this.bulletText = this.add.text(50, 568, `12/12`, {
       font: '24px Courier',
       fill: '#000',
     });
@@ -159,7 +162,7 @@ export default class FgScene extends Phaser.Scene {
 
   update(time, delta) {
     this.player.update(time, this.player, this.cursors, this.fireBullet);
-    this.bulletText.setText('Rounds: ' + this.player.remainingBullets + '/12');
+    this.bulletText.setText(this.player.remainingBullets + '/12');
   }
 
   fireBullet(x, y, angle) {
