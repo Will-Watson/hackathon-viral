@@ -98,7 +98,7 @@ export default class FgScene extends Phaser.Scene {
     );
     //spawning viruses
     this.spawnGreenVirus(5, 8);
-    this.spawnYellowVirus(1, 3);
+    //this.spawnYellowVirus(1, 3);
   }
 
   createAnimations() {
@@ -181,10 +181,13 @@ export default class FgScene extends Phaser.Scene {
   hit(bullet, enemy) {
     enemy.disableBody(true, true);
 
-    if (this.greenVirus.countActive(true) === 0) {
+    if (
+      this.greenVirus.countActive(true) === 0 &&
+      this.yellowVirus.countActive(true) === 0
+    ) {
       setTimeout(() => {
         this.spawnGreenVirus(5, 8);
-        //this.spawnYellowVirus(1, 3);
+        this.spawnYellowVirus(1, 3);
       }, 3000);
     }
   }
