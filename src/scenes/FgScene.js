@@ -33,17 +33,17 @@ export default class FgScene extends Phaser.Scene {
     // << CREATE GAME ENTITIES HERE >>
 
     this.player = new Player(this, 400, 550, 'soldierHandgun').setScale(0.25);
+
     this.greenVirus = this.physics.add.group({
       classType: GreenVirus,
       runChildUpdate: true,
       allowGravity: false,
       key: 'greenVirus',
-      repeat: 1,
+      repeat: 0,
       setXY: {
-        x: Math.floor(Math.random() * 500) + 100,
-        y: Math.floor(Math.random() * 300) + 100,
-        stepX: Math.floor(Math.random() * 100),
-        stepY: Math.floor(Math.random() * 100),
+        x: Phaser.Math.Between(0, 800),
+        y: 50,
+        stepX: Phaser.Math.Between(40, 70),
       },
     });
 
@@ -53,16 +53,6 @@ export default class FgScene extends Phaser.Scene {
       allowGravity: false,
       maxSize: 40,
     });
-
-    this.physics.add.collider(this.greenVirus, this.greenVirus);
-
-    this.physics.add.collider(
-      this.player,
-      this.greenVirus,
-      this.hitVirus,
-      null,
-      this
-    );
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.createAnimations();
@@ -78,6 +68,15 @@ export default class FgScene extends Phaser.Scene {
     // << CREATE SOUNDS HERE >>
     // Create collisions for all entities
     // << CREATE COLLISIONS HERE >>
+    this.physics.add.collider(this.greenVirus, this.greenVirus);
+
+    this.physics.add.collider(
+      this.player,
+      this.greenVirus,
+      this.hitVirus,
+      null,
+      this
+    );
   }
 
   createAnimations() {
@@ -120,8 +119,14 @@ export default class FgScene extends Phaser.Scene {
   // delta: time elapsed (ms) since last update() call. 16.666 ms @ 60fps
   update(time, delta) {
     // << DO UPDATE LOGIC HERE >>
-    //this.legs.update(this.cursors);
+
     this.player.update(time, this.player, this.cursors, this.fireBullet);
+
+    // Phaser.Actions.RotateAround(
+    //   this.greenVirus.getChildren(),
+    //   { x: 400, y: 300 },
+    //   0.01
+    // );
   }
 
   fireBullet(x, y, angle) {
@@ -158,13 +163,31 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
+    bullet.disableBody(true, true);
     enemy.disableBody(true, true);
+    if (this.greenVirus.countActive(true) === 0) {
+      this.greenVirus.children.iterate((child) => {
+        child.enableBody(true, child.x, 0, true, true);
+      });
+
+      let x = Phaser.Math.Between(0, 800);
+
+      let viruses = Phaser.Math.Between(10, 25);
+      let virus;
+      for (let i = 0; i < viruses; i++) {
+        virus = this.greenVirus.create(x, 50, 'greenVirus');
+      }
+      virus.setBounce(1);
+      virus.setCollideWorldBounds(true);
+      virus.setVelocity(Phaser.Math.Between(10, 100));
+    }
   }
 
   hitVirus(player, virus) {
     this.physics.pause();
 
     player.setTint(0xff0000);
+    virus.setTint(0xff0000);
     this.gameOver = true;
   }
 }
