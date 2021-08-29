@@ -68,15 +68,31 @@ export default class FgScene extends Phaser.Scene {
       null,
       this
     );
+    this.physics.add.overlap(
+      this.bullets,
+      this.yellowVirus,
+      this.hit,
+      null,
+      this
+    );
     // Create sounds
     // << CREATE SOUNDS HERE >>
     // Create collisions for all entities
     // << CREATE COLLISIONS HERE >>
     this.physics.add.collider(this.greenVirus, this.greenVirus);
+    this.physics.add.collider(this.yellowVirus, this.yellowVirus);
+    //this.physics.add.collider(this.greenVirus, this.greenVirus);
 
     this.physics.add.collider(
       this.player,
       this.greenVirus,
+      this.hitVirus,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.player,
+      this.yellowVirus,
       this.hitVirus,
       null,
       this
