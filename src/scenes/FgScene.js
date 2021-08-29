@@ -46,8 +46,8 @@ export default class FgScene extends Phaser.Scene {
     });
     this.yellowVirus = this.physics.add.group({
       classType: YellowVirus,
-      bounceX: 2,
-      bounceY: 2,
+      bounceX: 1,
+      bounceY: 1,
       collideWorldBounds: true,
     });
 
@@ -98,7 +98,7 @@ export default class FgScene extends Phaser.Scene {
     );
     //spawning viruses
     this.spawnGreenVirus(5, 8);
-    //this.spawnVirus(this.yellowVirus, 'yellowVirus', 1, 3);
+    this.spawnYellowVirus(1, 3);
   }
 
   createAnimations() {
