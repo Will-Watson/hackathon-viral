@@ -41,32 +41,6 @@ export default class FgScene extends Phaser.Scene {
       collideWorldBounds: true,
     });
 
-    let randomViruses = Phaser.Math.Between(5, 8);
-
-    for (let i = 0; i < randomViruses; i++) {
-      this.greenVirus
-        .create(Phaser.Math.Between(30, 770), 30, 'greenVirus')
-        .setVelocity(
-          Phaser.Math.Between(-100, 100),
-          Phaser.Math.Between(-100, 100)
-        )
-        .setScale(0.75);
-      this.greenVirus
-        .create(770, Phaser.Math.Between(30, 570), 'greenVirus')
-        .setVelocity(
-          Phaser.Math.Between(-100, 100),
-          Phaser.Math.Between(-100, 100)
-        )
-        .setScale(0.75);
-      this.greenVirus
-        .create(0, Phaser.Math.Between(30, 570), 'greenVirus')
-        .setVelocity(
-          Phaser.Math.Between(-100, 100),
-          Phaser.Math.Between(-100, 100)
-        )
-        .setScale(0.75);
-    }
-
     this.bullets = this.physics.add.group({
       classType: Bullet,
       runChildUpdate: true,
@@ -97,6 +71,8 @@ export default class FgScene extends Phaser.Scene {
       null,
       this
     );
+    //spawning viruses
+    this.spawnVirus();
   }
 
   createAnimations() {
@@ -186,5 +162,33 @@ export default class FgScene extends Phaser.Scene {
     player.setTint(0xff0000);
     virus.setTint(0xff0000);
     this.gameOver = true;
+  }
+
+  spawnVirus() {
+    let randomViruses = Phaser.Math.Between(5, 8);
+
+    for (let i = 0; i < randomViruses; i++) {
+      this.greenVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'greenVirus')
+        .setVelocity(
+          Phaser.Math.Between(-100, 100),
+          Phaser.Math.Between(-100, 100)
+        )
+        .setScale(0.75);
+      this.greenVirus
+        .create(770, Phaser.Math.Between(30, 570), 'greenVirus')
+        .setVelocity(
+          Phaser.Math.Between(-100, 100),
+          Phaser.Math.Between(-100, 100)
+        )
+        .setScale(0.75);
+      this.greenVirus
+        .create(0, Phaser.Math.Between(30, 570), 'greenVirus')
+        .setVelocity(
+          Phaser.Math.Between(-100, 100),
+          Phaser.Math.Between(-100, 100)
+        )
+        .setScale(0.75);
+    }
   }
 }
