@@ -82,7 +82,8 @@ export default class FgScene extends Phaser.Scene {
       this
     );
     //spawning viruses
-    this.spawnVirus(this.greenVirus, 'greenVirus');
+    this.spawnVirus(this.greenVirus, 'greenVirus', 5, 8);
+    this.spawnVirus(this.yellowVirus, 'yellowVirus', 1, 3);
   }
 
   createAnimations() {
@@ -167,7 +168,7 @@ export default class FgScene extends Phaser.Scene {
 
     if (this.greenVirus.countActive(true) === 0) {
       setTimeout(() => {
-        this.spawnVirus(this.greenVirus, 'greenVirus');
+        this.spawnVirus(this.greenVirus, 'greenVirus', 5, 8);
       }, 3000);
     }
   }
@@ -180,8 +181,8 @@ export default class FgScene extends Phaser.Scene {
     this.gameOver = true;
   }
 
-  spawnVirus(virus, virusString) {
-    let randomViruses = Phaser.Math.Between(5, 8);
+  spawnVirus(virus, virusString, min, max) {
+    let randomViruses = Phaser.Math.Between(min, max);
 
     for (let i = 0; i < randomViruses; i++) {
       virus
