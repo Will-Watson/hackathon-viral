@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import Player from '../entities/Player';
 import Bullet from '../entities/Bullet';
 import GreenVirus from '../entities/GreenVirus';
+import YellowVirus from '../entities/YellowVirus';
+import BlueVirus from '../entities/BlueVirus';
 
 export default class FgScene extends Phaser.Scene {
   constructor() {
@@ -24,6 +26,8 @@ export default class FgScene extends Phaser.Scene {
     );
     this.load.image('bullet', 'assets/sprites/Bullet.png');
     this.load.image('greenVirus', 'assets/sprites/GreenVirus.png');
+    this.load.image('yellowVirus', 'assets/sprites/yellowVirus.png');
+    this.load.image('blueVirus', 'assets/sprites/blueVirus.png');
     // Preload Sounds
     // << LOAD SOUNDS HERE >>
   }
