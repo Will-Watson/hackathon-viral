@@ -35,6 +35,7 @@ export default class FgScene extends Phaser.Scene {
     this.player = new Player(this, 400, 550, 'soldierHandgun').setScale(0.25);
 
     this.greenVirus = this.physics.add.group({
+      classType: GreenVirus,
       bounceX: 1,
       bounceY: 1,
       collideWorldBounds: true,
@@ -140,12 +141,6 @@ export default class FgScene extends Phaser.Scene {
     // << DO UPDATE LOGIC HERE >>
 
     this.player.update(time, this.player, this.cursors, this.fireBullet);
-
-    // Phaser.Actions.RotateAround(
-    //   this.greenVirus.getChildren(),
-    //   { x: 400, y: 300 },
-    //   0.01
-    // );
   }
 
   fireBullet(x, y, angle) {
