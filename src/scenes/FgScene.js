@@ -10,6 +10,8 @@ export default class FgScene extends Phaser.Scene {
     super('FgScene');
     this.fireBullet = this.fireBullet.bind(this);
     this.hit = this.hit.bind(this);
+    this.score = 0;
+    this.scoreText;
   }
 
   preload() {
@@ -34,7 +36,6 @@ export default class FgScene extends Phaser.Scene {
 
   create() {
     // Create game entities
-    // << CREATE GAME ENTITIES HERE >>
 
     this.player = new Player(this, 400, 550, 'soldierHandgun').setScale(0.25);
 
@@ -75,6 +76,12 @@ export default class FgScene extends Phaser.Scene {
       null,
       this
     );
+
+    //scoreboard
+    this.scoreText = this.add.text(16, 16, 'Score: 0', {
+      fontSize: '32px',
+      fill: '#000',
+    });
     // Create sounds
     // << CREATE SOUNDS HERE >>
     // Create collisions for all entities
@@ -97,8 +104,8 @@ export default class FgScene extends Phaser.Scene {
       this
     );
     //spawning viruses
-    this.spawnGreenVirus(5, 8);
-    //this.spawnYellowVirus(1, 3);
+    //this.spawnGreenVirus(5, 8);
+    this.spawnYellowVirus(1, 3);
   }
 
   createAnimations() {
@@ -137,11 +144,7 @@ export default class FgScene extends Phaser.Scene {
     });
   }
 
-  // time: total time elapsed (ms)
-  // delta: time elapsed (ms) since last update() call. 16.666 ms @ 60fps
   update(time, delta) {
-    // << DO UPDATE LOGIC HERE >>
-
     this.player.update(time, this.player, this.cursors, this.fireBullet);
   }
 
@@ -179,7 +182,15 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
+    console.log(enemy);
     enemy.disableBody(true, true);
+    if (enemy.texture.key === 'greenVirus') {
+      this.score += 10;
+      this.scoreText.setText('Score: ' + this.score);
+    } else if (enemy.texture.key === 'yellowVirus') {
+      this.score += 20;
+      this.scoreText.setText('Score: ' + this.score);
+    }
 
     if (
       this.greenVirus.countActive(true) === 0 &&
