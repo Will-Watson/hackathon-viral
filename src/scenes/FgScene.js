@@ -44,6 +44,12 @@ export default class FgScene extends Phaser.Scene {
       bounceY: 1,
       collideWorldBounds: true,
     });
+    this.yellowVirus = this.physics.add.group({
+      classType: YellowVirus,
+      bounceX: 2,
+      bounceY: 2,
+      collideWorldBounds: true,
+    });
 
     this.bullets = this.physics.add.group({
       classType: Bullet,
