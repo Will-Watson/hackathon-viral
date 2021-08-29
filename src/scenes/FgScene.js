@@ -99,7 +99,7 @@ export default class FgScene extends Phaser.Scene {
     );
     //spawning viruses
     this.spawnVirus(this.greenVirus, 'greenVirus', 5, 8);
-    this.spawnVirus(this.yellowVirus, 'yellowVirus', 1, 3);
+    //this.spawnVirus(this.yellowVirus, 'yellowVirus', 1, 3);
   }
 
   createAnimations() {
@@ -185,6 +185,7 @@ export default class FgScene extends Phaser.Scene {
     if (this.greenVirus.countActive(true) === 0) {
       setTimeout(() => {
         this.spawnVirus(this.greenVirus, 'greenVirus', 5, 8);
+        this.spawnVirus(this.yellowVirus, 'yellowVirus', 1, 3);
       }, 3000);
     }
   }
