@@ -35,17 +35,36 @@ export default class FgScene extends Phaser.Scene {
     this.player = new Player(this, 400, 550, 'soldierHandgun').setScale(0.25);
 
     this.greenVirus = this.physics.add.group({
-      classType: GreenVirus,
-      runChildUpdate: true,
-      allowGravity: false,
-      key: 'greenVirus',
-      repeat: 0,
-      setXY: {
-        x: Phaser.Math.Between(0, 800),
-        y: 50,
-        stepX: Phaser.Math.Between(40, 70),
-      },
+      bounceX: 1,
+      bounceY: 1,
+      collideWorldBounds: true,
     });
+
+    let randomViruses = Phaser.Math.Between(5, 8);
+
+    for (let i = 0; i < randomViruses; i++) {
+      this.greenVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'greenVirus')
+        .setVelocity(
+          Phaser.Math.Between(-100, 100),
+          Phaser.Math.Between(-100, 100)
+        )
+        .setScale(0.75);
+      this.greenVirus
+        .create(770, Phaser.Math.Between(30, 570), 'greenVirus')
+        .setVelocity(
+          Phaser.Math.Between(-100, 100),
+          Phaser.Math.Between(-100, 100)
+        )
+        .setScale(0.75);
+      this.greenVirus
+        .create(0, Phaser.Math.Between(30, 570), 'greenVirus')
+        .setVelocity(
+          Phaser.Math.Between(-100, 100),
+          Phaser.Math.Between(-100, 100)
+        )
+        .setScale(0.75);
+    }
 
     this.bullets = this.physics.add.group({
       classType: Bullet,
@@ -163,24 +182,7 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    bullet.disableBody(true, true);
     enemy.disableBody(true, true);
-    if (this.greenVirus.countActive(true) === 0) {
-      this.greenVirus.children.iterate((child) => {
-        child.enableBody(true, child.x, 0, true, true);
-      });
-
-      let x = Phaser.Math.Between(0, 800);
-
-      let viruses = Phaser.Math.Between(10, 25);
-      let virus;
-      for (let i = 0; i < viruses; i++) {
-        virus = this.greenVirus.create(x, 50, 'greenVirus');
-      }
-      virus.setBounce(1);
-      virus.setCollideWorldBounds(true);
-      virus.setVelocity(Phaser.Math.Between(10, 100));
-    }
   }
 
   hitVirus(player, virus) {
