@@ -16,6 +16,7 @@ export default class FgScene extends Phaser.Scene {
     this.levelText;
     this.remainingBullets = Player.remainingBullets;
     this.bulletText;
+    this.hud;
   }
 
   preload() {
@@ -103,9 +104,10 @@ export default class FgScene extends Phaser.Scene {
       null,
       this
     );
-    //spawning viruses
-    this.spawnGreenVirus(5, 8);
-    //this.spawnYellowVirus(1, 3);
+    //spawning initial viruses
+    setTimeout(() => {
+      this.spawnGreenVirus(5, 8);
+    }, 3000);
 
     //scoreboard
     this.scoreText = this.add.text(16, 16, 'Score: 0', {
@@ -117,11 +119,17 @@ export default class FgScene extends Phaser.Scene {
       fill: '#00ff00',
     });
     this.add.image(30, 580, 'glock').setScale(0.035);
-
     this.bulletText = this.add.text(50, 568, `12/12`, {
       font: '24px Courier',
       fill: '#000',
     });
+    this.hud.add.layer();
+    this.hud.add([
+      this.scoreText,
+      this.levelText,
+      this.bulletText,
+      this.image('glock'),
+    ]);
   }
 
   createAnimations() {
