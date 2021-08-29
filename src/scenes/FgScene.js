@@ -14,6 +14,8 @@ export default class FgScene extends Phaser.Scene {
     this.scoreText;
     this.level = 1;
     this.levelText;
+    this.remainingBullets = Player.remainingBullets;
+    this.bulletText;
   }
 
   preload() {
@@ -79,15 +81,6 @@ export default class FgScene extends Phaser.Scene {
       this
     );
 
-    //scoreboard
-    this.scoreText = this.add.text(16, 16, 'Score: 0', {
-      fontSize: '32px',
-      fill: '#000',
-    });
-    this.levelText = this.add.text(16, 50, 'Level: 1', {
-      fontSize: '32px',
-      fill: '#000',
-    });
     // Create sounds
     // << CREATE SOUNDS HERE >>
     // Create collisions for all entities
@@ -110,8 +103,27 @@ export default class FgScene extends Phaser.Scene {
       this
     );
     //spawning viruses
-    //this.spawnGreenVirus(5, 8);
-    this.spawnYellowVirus(1, 3);
+    this.spawnGreenVirus(5, 8);
+    //this.spawnYellowVirus(1, 3);
+
+    //scoreboard
+    this.scoreText = this.add.text(16, 16, 'Score: 0', {
+      font: '32px Courier',
+      fill: '#00ff00',
+    });
+    this.levelText = this.add.text(16, 50, 'Level: 1', {
+      font: '32px Courier',
+      fill: '#00ff00',
+    });
+    this.bulletText = this.add.text(
+      16,
+      568,
+      `Rounds: ${this.player.remainingBullets}`,
+      {
+        font: '24px Courier',
+        fill: '#000',
+      }
+    );
   }
 
   createAnimations() {
@@ -152,6 +164,7 @@ export default class FgScene extends Phaser.Scene {
 
   update(time, delta) {
     this.player.update(time, this.player, this.cursors, this.fireBullet);
+    this.bulletText.setText('Rounds: ' + this.player.remainingBullets);
   }
 
   fireBullet(x, y, angle) {
@@ -192,6 +205,7 @@ export default class FgScene extends Phaser.Scene {
     if (enemy.texture.key === 'greenVirus') {
       this.score += 10;
       this.scoreText.setText('Score: ' + this.score);
+      this.data.values.Score += 10;
     } else if (enemy.texture.key === 'yellowVirus') {
       this.score += 20;
       this.scoreText.setText('Score: ' + this.score);
