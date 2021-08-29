@@ -230,15 +230,24 @@ export default class FgScene extends Phaser.Scene {
     for (let i = 0; i < randomViruses; i++) {
       this.yellowVirus
         .create(Phaser.Math.Between(30, 770), 30, 'yellowVirus')
-        .setVelocity(Phaser.Math.Between(50, 200), Phaser.Math.Between(50, 200))
+        .setVelocity(
+          Phaser.Math.Between(100, 200),
+          Phaser.Math.Between(100, 200)
+        )
         .setScale(0.75);
       this.yellowVirus
         .create(770, Phaser.Math.Between(30, 570), 'yellowVirus')
-        .setVelocity(Phaser.Math.Between(50, 200), Phaser.Math.Between(50, 200))
+        .setVelocity(
+          Phaser.Math.Between(100, 200),
+          Phaser.Math.Between(100, 200)
+        )
         .setScale(0.75);
       this.yellowVirus
         .create(0, Phaser.Math.Between(30, 570), 'yellowVirus')
-        .setVelocity(Phaser.Math.Between(50, 200), Phaser.Math.Between(50, 200))
+        .setVelocity(
+          Phaser.Math.Between(100, 200),
+          Phaser.Math.Between(100, 200)
+        )
         .setScale(0.75);
     }
   }
