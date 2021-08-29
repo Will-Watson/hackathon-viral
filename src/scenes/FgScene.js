@@ -81,7 +81,6 @@ export default class FgScene extends Phaser.Scene {
     // << CREATE COLLISIONS HERE >>
     this.physics.add.collider(this.greenVirus, this.greenVirus);
     this.physics.add.collider(this.yellowVirus, this.yellowVirus);
-    //this.physics.add.collider(this.greenVirus, this.greenVirus);
 
     this.physics.add.collider(
       this.player,
@@ -98,7 +97,7 @@ export default class FgScene extends Phaser.Scene {
       this
     );
     //spawning viruses
-    this.spawnVirus(this.greenVirus, 'greenVirus', 5, 8);
+    this.spawnGreenVirus(5, 8);
     //this.spawnVirus(this.yellowVirus, 'yellowVirus', 1, 3);
   }
 
@@ -180,12 +179,13 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
+    console.log(enemy);
     enemy.disableBody(true, true);
 
     if (this.greenVirus.countActive(true) === 0) {
       setTimeout(() => {
-        this.spawnVirus(this.greenVirus, 'greenVirus', 5, 8);
-        this.spawnVirus(this.yellowVirus, 'yellowVirus', 1, 3);
+        this.spawnGreenVirus(5, 8);
+        //this.spawnYellowVirus(1, 3);
       }, 3000);
     }
   }
@@ -198,26 +198,26 @@ export default class FgScene extends Phaser.Scene {
     this.gameOver = true;
   }
 
-  spawnVirus(virus, virusString, min, max) {
+  spawnGreenVirus(min, max) {
     let randomViruses = Phaser.Math.Between(min, max);
 
     for (let i = 0; i < randomViruses; i++) {
-      virus
-        .create(Phaser.Math.Between(30, 770), 30, virusString)
+      this.greenVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'greenVirus')
         .setVelocity(
           Phaser.Math.Between(-100, 100),
           Phaser.Math.Between(-100, 100)
         )
         .setScale(0.75);
-      virus
-        .create(770, Phaser.Math.Between(30, 570), virusString)
+      this.greenVirus
+        .create(770, Phaser.Math.Between(30, 570), 'greenVirus')
         .setVelocity(
           Phaser.Math.Between(-100, 100),
           Phaser.Math.Between(-100, 100)
         )
         .setScale(0.75);
-      virus
-        .create(0, Phaser.Math.Between(30, 570), virusString)
+      this.greenVirus
+        .create(0, Phaser.Math.Between(30, 570), 'greenVirus')
         .setVelocity(
           Phaser.Math.Between(-100, 100),
           Phaser.Math.Between(-100, 100)
