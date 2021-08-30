@@ -6,9 +6,12 @@ export default class TitleScene extends Phaser.Scene {
     this.titleText;
   }
 
-  preload() {}
+  preload() {
+    this.load.image('artery', 'assets/backgrounds/InitialGameBackground.png');
+  }
 
   create() {
+    this.add.image(400, 300, 'artery');
     this.titleText = this.add.text(200, 150, 'VIRAL', {
       font: '75px Courier',
       fill: '#00ff00',
