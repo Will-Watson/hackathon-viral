@@ -291,8 +291,8 @@ export default class FgScene extends Phaser.Scene {
       }
       if (this.hitCount === 1000) {
         let explosion = new Explosion(this, enemy.x, enemy.y)
-          .setScale(2.5)
-          .setTint(0xffff00);
+          .setScale(8)
+          .setTint(0x0000ff);
         this.score += 2000;
         this.hitCount = 0;
         enemy.destroy();
