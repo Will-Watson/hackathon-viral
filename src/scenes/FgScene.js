@@ -163,6 +163,14 @@ export default class FgScene extends Phaser.Scene {
       }),
       frameRate: 10,
     });
+    this.anims.create({
+      key: 'explode',
+      frames: this.anims.generateFrameNumbers('explosion', {
+        start: 0,
+        end: 11,
+      }),
+      frameRate: 10,
+    });
   }
 
   update(time, delta) {
@@ -245,21 +253,24 @@ export default class FgScene extends Phaser.Scene {
           Phaser.Math.Between(-100, 100),
           Phaser.Math.Between(-100, 100)
         )
-        .setScale(0.75);
+        .setScale(0.75)
+        .setAngle(Phaser.Math.Between(-180, 180));
       this.greenVirus
         .create(770, Phaser.Math.Between(30, 570), 'greenVirus')
         .setVelocity(
           Phaser.Math.Between(-100, 100),
           Phaser.Math.Between(-100, 100)
         )
-        .setScale(0.75);
+        .setScale(0.75)
+        .setAngle(Phaser.Math.Between(-180, 180));
       this.greenVirus
         .create(0, Phaser.Math.Between(30, 570), 'greenVirus')
         .setVelocity(
           Phaser.Math.Between(-100, 100),
           Phaser.Math.Between(-100, 100)
         )
-        .setScale(0.75);
+        .setScale(0.75)
+        .setAngle(Phaser.Math.Between(-180, 180));
     }
   }
   spawnYellowVirus(min, max) {
@@ -272,21 +283,24 @@ export default class FgScene extends Phaser.Scene {
           Phaser.Math.Between(100, 200),
           Phaser.Math.Between(100, 200)
         )
-        .setScale(0.75);
+        .setScale(0.75)
+        .setAngle(Phaser.Math.Between(-180, 180));
       this.yellowVirus
         .create(770, Phaser.Math.Between(30, 570), 'yellowVirus')
         .setVelocity(
           Phaser.Math.Between(100, 200),
           Phaser.Math.Between(100, 200)
         )
-        .setScale(0.75);
+        .setScale(0.75)
+        .setAngle(Phaser.Math.Between(-180, 180));
       this.yellowVirus
         .create(0, Phaser.Math.Between(30, 570), 'yellowVirus')
         .setVelocity(
           Phaser.Math.Between(100, 200),
           Phaser.Math.Between(100, 200)
         )
-        .setScale(0.75);
+        .setScale(0.75)
+        .setAngle(Phaser.Math.Between(-180, 180));
     }
   }
 }
