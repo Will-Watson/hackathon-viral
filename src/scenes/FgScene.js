@@ -469,6 +469,7 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hitVirus(player, virus) {
+    this.backgroundMusic.stop();
     this.explosion.play();
     this.physics.pause();
     virus.setTint(0xff0000);
