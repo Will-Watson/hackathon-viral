@@ -17,8 +17,8 @@ export default class FgScene extends Phaser.Scene {
     this.levelText;
     this.bulletText;
 
-    this.follower;
-    this.path;
+    this.gameOverText;
+    this.restartText;
   }
 
   preload() {
@@ -133,8 +133,7 @@ export default class FgScene extends Phaser.Scene {
     );
     //spawning initial viruses
     setTimeout(() => {
-      //this.spawnGreenVirus(5, 8);
-      this.spawnBlueVirus(1, 1);
+      this.spawnGreenVirus(2, 4, 50, 50);
     }, 3000);
 
     //scoreboard
@@ -236,24 +235,22 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    enemy.destroy();
-
     if (enemy.texture.key === 'greenVirus') {
       let explosion = new Explosion(this, enemy.x, enemy.y).setScale(0.75);
       this.score += 10;
-      this.scoreText.setText('Score: ' + this.score);
-      this.data.values.Score += 10;
+      enemy.destroy();
     } else if (enemy.texture.key === 'yellowVirus') {
       let explosion = new Explosion(this, enemy.x, enemy.y).setScale(1);
       this.score += 20;
-      this.scoreText.setText('Score: ' + this.score);
+      enemy.destroy();
     } else if (enemy.texture.key === 'blueVirus') {
       let explosion = new Explosion(this, enemy.x, enemy.y)
         .setScale(1.5)
         .setTint(0x000ff);
       this.score += 50;
-      this.scoreText.setText('Score: ' + this.score);
+      enemy.destroy();
     }
+    this.scoreText.setText('Score: ' + this.score);
 
     if (
       this.greenVirus.countActive(true) === 0 &&
@@ -262,10 +259,11 @@ export default class FgScene extends Phaser.Scene {
     ) {
       this.level += 1;
       this.levelText.setText('Level: ' + this.level);
+
       setTimeout(() => {
-        this.spawnGreenVirus(5, 8);
-        this.spawnYellowVirus(1, 3);
-        this.spawnBlueVirus(1, 1);
+        this.spawnGreenVirus(5, 8, 50, 50);
+        this.spawnYellowVirus(1, 3, 100, 100);
+        this.spawnBlueVirus(1, 1, 200, 200);
       }, 3000);
     }
   }
@@ -279,6 +277,18 @@ export default class FgScene extends Phaser.Scene {
       .setTint(0x9f329f);
 
     this.gameOver = true;
+    this.gameOverText = this.add.text(200, 150, 'GAME OVER', {
+      font: '75px Courier',
+      fill: '#00ff00',
+    });
+    this.restartText = this.add.text(250, 300, 'Click to Restart', {
+      font: '30px Courier',
+      fill: '#00ff00',
+    });
+
+    this.input.once('pointerdown', () => {
+      this.scene.restart();
+    });
   }
 
   spawnGreenVirus(min, max, speedX, speedY) {
