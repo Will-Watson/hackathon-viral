@@ -31,6 +31,10 @@ export default class FgScene extends Phaser.Scene {
         frameHeight: 216,
       }
     );
+    this.load.spritesheet('explosion', 'assets/spritesheets/Explosion.png', {
+      frameWidth: 96,
+      frameHeight: 96,
+    });
     this.load.image('bullet', 'assets/sprites/Bullet.png');
     this.load.image('glock', 'assets/sprites/Glock.png');
     this.load.image('greenVirus', 'assets/sprites/GreenVirus.png');
@@ -123,13 +127,6 @@ export default class FgScene extends Phaser.Scene {
       font: '24px Courier',
       fill: '#000',
     });
-    this.hud.add.layer();
-    this.hud.add([
-      this.scoreText,
-      this.levelText,
-      this.bulletText,
-      this.image('glock'),
-    ]);
   }
 
   createAnimations() {
