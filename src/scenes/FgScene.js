@@ -133,7 +133,7 @@ export default class FgScene extends Phaser.Scene {
     );
     //spawning initial viruses
     setTimeout(() => {
-      this.spawnGreenVirus(2, 4, 50, 50);
+      this.spawnGreenVirus(2, 2, 50, 50);
     }, 3000);
 
     //scoreboard
@@ -265,7 +265,37 @@ export default class FgScene extends Phaser.Scene {
       //level specs
       switch (this.level) {
         case 2:
-          this.spawnGreenVirus(20, 20, 50, 50);
+          return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
+        case 3:
+          return setTimeout(() => this.spawnGreenVirus(4, 4, 50, 50), 2000);
+        case 4:
+          return setTimeout(() => this.spawnGreenVirus(5, 5, 50, 50), 2000);
+        case 5:
+          return setTimeout(() => this.spawnYellowVirus(2, 2, 75, 75), 2000);
+        case 6:
+          return setTimeout(() => {
+            this.spawnGreenVirus(3, 3, 50, 50);
+            this.spawnYellowVirus(1, 1, 75, 75);
+          }, 2000);
+        case 7:
+          return setTimeout(() => {
+            this.spawnGreenVirus(4, 4, 50, 50);
+            this.spawnYellowVirus(2, 2, 75, 75);
+          }, 2000);
+        case 8:
+          return setTimeout(() => {
+            this.spawnGreenVirus(5, 5, 50, 50);
+            this.spawnYellowVirus(2, 2, 75, 75);
+          }, 2000);
+        case 9:
+          return setTimeout(() => {
+            this.spawnGreenVirus(3, 3, 50, 50);
+            this.spawnYellowVirus(3, 3, 75, 75);
+          }, 2000);
+        case 10:
+          return setTimeout(() => {
+            this.spawnGreenBossVirus(1, 1, 100, 100);
+          });
       }
     }
   }
