@@ -19,6 +19,7 @@ export default class FgScene extends Phaser.Scene {
 
     this.gameOverText;
     this.restartText;
+    this.titleScreen;
   }
 
   preload() {
@@ -284,6 +285,14 @@ export default class FgScene extends Phaser.Scene {
     this.restartText = this.add.text(250, 300, 'Click to Restart', {
       font: '30px Courier',
       fill: '#00ff00',
+    });
+    this.titleScreen = this.add.text(290, 450, 'Title Screen', {
+      font: '30px Courier',
+      fill: '#00ff00',
+    });
+    this.titleScreen.setInteractive({ useHandCursor: true });
+    this.titleScreen.on('pointerdown', () => {
+      this.scene.switch('TitleScene');
     });
 
     this.input.once('pointerdown', () => {
