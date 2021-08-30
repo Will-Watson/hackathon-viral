@@ -241,9 +241,12 @@ export default class FgScene extends Phaser.Scene {
 
   hitVirus(player, virus) {
     this.physics.pause();
-
-    player.setTint(0xff0000);
     virus.setTint(0xff0000);
+    player.disableBody(true, true);
+    let explosion = new Explosion(this, player.x, player.y)
+      .setScale(5)
+      .setTint(0x9f329f);
+
     this.gameOver = true;
   }
 
