@@ -24,7 +24,6 @@ export default class FgScene extends Phaser.Scene {
 
   preload() {
     // Preload Sprites
-    // << LOAD SPRITES HERE >>
 
     this.load.spritesheet(
       'soldierHandgun',
@@ -44,7 +43,6 @@ export default class FgScene extends Phaser.Scene {
     this.load.image('yellowVirus', 'assets/sprites/yellowVirus.png');
     this.load.image('blueVirus', 'assets/sprites/blueVirus.png');
     // Preload Sounds
-    // << LOAD SOUNDS HERE >>
   }
 
   create() {
@@ -290,6 +288,7 @@ export default class FgScene extends Phaser.Scene {
       font: '30px Courier',
       fill: '#00ff00',
     });
+
     this.titleScreen.setInteractive({ useHandCursor: true });
     this.titleScreen.on('pointerdown', () => {
       this.scene.switch('TitleScene');
