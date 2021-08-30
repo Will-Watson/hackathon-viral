@@ -258,14 +258,15 @@ export default class FgScene extends Phaser.Scene {
       this.yellowVirus.countActive(true) === 0 &&
       this.blueVirus.countActive(true) === 0
     ) {
+      //level incrementation
       this.level += 1;
       this.levelText.setText('Level: ' + this.level);
 
-      setTimeout(() => {
-        this.spawnGreenVirus(5, 8, 50, 50);
-        this.spawnYellowVirus(1, 3, 100, 100);
-        this.spawnBlueVirus(1, 1, 200, 200);
-      }, 3000);
+      //level specs
+      switch (this.level) {
+        case 2:
+          this.spawnGreenVirus(20, 20, 50, 50);
+      }
     }
   }
 
@@ -297,6 +298,8 @@ export default class FgScene extends Phaser.Scene {
     });
 
     this.input.once('pointerdown', () => {
+      this.level = 1;
+      this.score = 0;
       this.scene.restart();
     });
   }
