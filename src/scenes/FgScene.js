@@ -277,7 +277,7 @@ export default class FgScene extends Phaser.Scene {
         let explosion = new Explosion(this, enemy.x, enemy.y)
           .setScale(2.5)
           .setTint(0xffff00);
-        this.score += 2000;
+        this.score += 5000;
         this.hitCount = 0;
         enemy.destroy();
       }
@@ -293,7 +293,7 @@ export default class FgScene extends Phaser.Scene {
         let explosion = new Explosion(this, enemy.x, enemy.y)
           .setScale(8)
           .setTint(0x0000ff);
-        this.score += 2000;
+        this.score += 10000;
         this.hitCount = 0;
         enemy.destroy();
       }
@@ -312,7 +312,11 @@ export default class FgScene extends Phaser.Scene {
       //level specs
       switch (this.level) {
         case 2:
-          return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
+          //return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
+          return setTimeout(
+            () => this.spawnBlueBossVirus(1, 1, 400, 400),
+            2000
+          );
         case 3:
           return setTimeout(() => this.spawnGreenVirus(4, 4, 50, 50), 2000);
         case 4:
@@ -369,25 +373,25 @@ export default class FgScene extends Phaser.Scene {
           return setTimeout(() => {
             this.spawnGreenVirus(3, 3, 50, 50);
             this.spawnYellowVirus(2, 2, 75, 75);
-            this.spawnBlueVirus(1, 1, 75, 75);
+            this.spawnBlueVirus(1, 1, 125, 125);
           }, 2000);
         case 17:
           return setTimeout(() => {
             this.spawnGreenVirus(3, 3, 50, 50);
             this.spawnYellowVirus(2, 2, 75, 75);
-            this.spawnBlueVirus(1, 1, 75, 75);
+            this.spawnBlueVirus(1, 1, 125, 125);
           }, 2000);
         case 18:
           return setTimeout(() => {
             this.spawnGreenVirus(3, 3, 50, 50);
             this.spawnYellowVirus(2, 2, 75, 75);
-            this.spawnBlueVirus(2, 2, 75, 75);
+            this.spawnBlueVirus(2, 2, 125, 125);
           }, 2000);
         case 19:
           return setTimeout(() => {
             this.spawnGreenVirus(3, 3, 50, 50);
             this.spawnYellowVirus(2, 2, 75, 75);
-            this.spawnBlueVirus(2, 2, 75, 75);
+            this.spawnBlueVirus(2, 2, 125, 125);
           }, 2000);
         case 20:
           return setTimeout(() => {
@@ -398,12 +402,12 @@ export default class FgScene extends Phaser.Scene {
         case 22:
           return setTimeout(() => this.spawnYellowVirus(6, 6, 100, 100), 2000);
         case 23:
-          return setTimeout(() => this.spawnBlueVirus(5, 5, 125, 125), 2000);
+          return setTimeout(() => this.spawnBlueVirus(5, 5, 150, 150), 2000);
         case 24:
           return setTimeout(() => {
             this.spawnGreenVirus(3, 3, 75, 75);
             this.spawnYellowVirus(2, 2, 100, 100);
-            this.spawnBlueVirus(2, 2, 125, 125);
+            this.spawnBlueVirus(2, 2, 150, 150);
           }, 2000);
         case 25:
           return setTimeout(() => {
@@ -414,19 +418,19 @@ export default class FgScene extends Phaser.Scene {
           return setTimeout(() => {
             this.spawnGreenVirus(4, 4, 75, 75);
             this.spawnYellowVirus(2, 2, 100, 100);
-            this.spawnBlueVirus(2, 2, 125, 125);
+            this.spawnBlueVirus(2, 2, 150, 150);
           }, 2000);
         case 27:
           return setTimeout(() => {
             this.spawnGreenVirus(3, 3, 75, 75);
             this.spawnYellowVirus(2, 2, 100, 100);
-            this.spawnBlueVirus(3, 3, 125, 125);
+            this.spawnBlueVirus(3, 3, 150, 150);
           }, 2000);
         case 28:
           return setTimeout(() => {
             this.spawnGreenVirus(1, 1, 75, 75);
             this.spawnYellowVirus(4, 4, 100, 100);
-            this.spawnBlueVirus(3, 3, 125, 125);
+            this.spawnBlueVirus(3, 3, 150, 150);
           }, 2000);
         case 29:
           return setTimeout(() => {
@@ -434,7 +438,10 @@ export default class FgScene extends Phaser.Scene {
             this.spawnGreenBossVirus(2, 2, 150, 150);
           }, 2000);
         case 30:
-          return setTimeout(() => this.spawnBlueBossVirus(1, 1, 400, 400), 200);
+          return setTimeout(
+            () => this.spawnBlueBossVirus(1, 1, 400, 400),
+            2000
+          );
       }
     }
   }
