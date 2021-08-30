@@ -143,7 +143,7 @@ export default class FgScene extends Phaser.Scene {
       fill: '#00ff00',
     });
     this.add.image(30, 580, 'glock').setScale(0.035);
-    this.bulletText = this.add.text(50, 568, `12/12`, {
+    this.bulletText = this.add.text(55, 565, `12/12`, {
       font: '24px Courier',
       fill: '#000',
     });
