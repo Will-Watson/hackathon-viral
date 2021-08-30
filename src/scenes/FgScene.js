@@ -235,7 +235,6 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    this.hitCount += 1;
     if (enemy.texture.key === 'greenVirus' && enemy.scale === 0.75) {
       let explosion = new Explosion(this, enemy.x, enemy.y).setScale(0.75);
       this.score += 10;
@@ -250,6 +249,21 @@ export default class FgScene extends Phaser.Scene {
         .setTint(0x000ff);
       this.score += 50;
       enemy.destroy();
+    } else if (enemy.texture.key === 'greenVirus' && enemy.scale === 3) {
+      this.hitCount += 1;
+      if (this.hitCount === 50) {
+        enemy.setTint(0xff7f7f);
+      }
+      if (this.hitCount === 90) {
+        enemy.setTint(0xff0000);
+      }
+      if (this.hitCount === 100) {
+        let explosion = new Explosion(this, enemy.x, enemy.y)
+          .setScale(2.5)
+          .setTint(0x0ff00);
+        this.score += 1000;
+        enemy.destroy();
+      }
     }
     this.scoreText.setText('Score: ' + this.score);
 
