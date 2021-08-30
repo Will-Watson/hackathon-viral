@@ -133,6 +133,9 @@ export default class FgScene extends Phaser.Scene {
     //spawning initial viruses
     setTimeout(() => {
       this.spawnGreenVirus(2, 4, 50, 50);
+      this.spawnGreenBossVirus(1, 1, 200, 200);
+      this.spawnYellowBossVirus(1, 1, 200, 200);
+      this.spawnBlueBossVirus(1, 1, 200, 200);
     }, 3000);
 
     //scoreboard
@@ -359,6 +362,39 @@ export default class FgScene extends Phaser.Scene {
         .create(0, Phaser.Math.Between(30, 570), 'blueVirus')
         .setVelocity(speedX, speedY)
         .setScale(1)
+        .setAngle(Phaser.Math.Between(-180, 180));
+    }
+  }
+  spawnGreenBossVirus(min, max, speedX, speedY) {
+    let randomViruses = Phaser.Math.Between(min, max);
+
+    for (let i = 0; i < randomViruses; i++) {
+      this.greenVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'greenVirus')
+        .setVelocity(speedX, speedY)
+        .setScale(3)
+        .setAngle(Phaser.Math.Between(-180, 180));
+    }
+  }
+  spawnYellowBossVirus(min, max, speedX, speedY) {
+    let randomViruses = Phaser.Math.Between(min, max);
+
+    for (let i = 0; i < randomViruses; i++) {
+      this.yellowVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'yellowVirus')
+        .setVelocity(speedX, speedY)
+        .setScale(3)
+        .setAngle(Phaser.Math.Between(-180, 180));
+    }
+  }
+  spawnBlueBossVirus(min, max, speedX, speedY) {
+    let randomViruses = Phaser.Math.Between(min, max);
+
+    for (let i = 0; i < randomViruses; i++) {
+      this.blueVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'blueVirus')
+        .setVelocity(speedX, speedY)
+        .setScale(3)
         .setAngle(Phaser.Math.Between(-180, 180));
     }
   }
