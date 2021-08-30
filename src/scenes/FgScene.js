@@ -262,6 +262,7 @@ export default class FgScene extends Phaser.Scene {
           .setScale(2.5)
           .setTint(0x0ff00);
         this.score += 1000;
+        this.hitCount = 0;
         enemy.destroy();
       }
     }
