@@ -276,7 +276,7 @@ export default class FgScene extends Phaser.Scene {
       if (this.hitCount === 600) {
         let explosion = new Explosion(this, enemy.x, enemy.y)
           .setScale(2.5)
-          .setTint(0x0ff00);
+          .setTint(0xffff00);
         this.score += 2000;
         this.hitCount = 0;
         enemy.destroy();
@@ -296,7 +296,10 @@ export default class FgScene extends Phaser.Scene {
       //level specs
       switch (this.level) {
         case 2:
-          return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
+          //return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
+          return setTimeout(() => {
+            this.spawnYellowBossVirus(1, 1, 300, 300);
+          }, 2000);
         case 3:
           return setTimeout(() => this.spawnGreenVirus(4, 4, 50, 50), 2000);
         case 4:
