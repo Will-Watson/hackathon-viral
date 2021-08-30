@@ -251,13 +251,13 @@ export default class FgScene extends Phaser.Scene {
       enemy.destroy();
     } else if (enemy.texture.key === 'greenVirus' && enemy.scale === 3) {
       this.hitCount += 1;
-      if (this.hitCount === 50) {
+      if (this.hitCount === 150) {
         enemy.setTint(0xff7f7f);
       }
-      if (this.hitCount === 90) {
+      if (this.hitCount === 250) {
         enemy.setTint(0xff0000);
       }
-      if (this.hitCount === 100) {
+      if (this.hitCount === 300) {
         let explosion = new Explosion(this, enemy.x, enemy.y)
           .setScale(2.5)
           .setTint(0x0ff00);
@@ -280,7 +280,10 @@ export default class FgScene extends Phaser.Scene {
       //level specs
       switch (this.level) {
         case 2:
-          return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
+          //return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
+          return setTimeout(() => {
+            this.spawnGreenBossVirus(1, 1, 100, 100);
+          });
         case 3:
           return setTimeout(() => this.spawnGreenVirus(4, 4, 50, 50), 2000);
         case 4:
