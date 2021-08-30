@@ -48,6 +48,7 @@ export default class FgScene extends Phaser.Scene {
     this.load.audio('gunLoad', 'assets/audio/ReloadSound.wav');
     this.load.audio('vanquish', 'assets/audio/Vanquish.wav');
     this.load.audio('explosion', 'assets/audio/Explosion.wav');
+    this.load.audio('backgroundMusic', 'assets/audio/BackgroundMusic.ogg');
   }
 
   create() {
@@ -111,6 +112,8 @@ export default class FgScene extends Phaser.Scene {
     this.gunLoad = this.sound.add('gunLoad');
     this.vanquish = this.sound.add('vanquish');
     this.explosion = this.sound.add('explosion');
+    this.backgroundMusic = this.sound.add('backgroundMusic', { loop: true });
+    this.backgroundMusic.play();
 
     // Create collisions for all entities
     // << CREATE COLLISIONS HERE >>
