@@ -312,11 +312,7 @@ export default class FgScene extends Phaser.Scene {
       //level specs
       switch (this.level) {
         case 2:
-          //return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
-          return setTimeout(
-            () => this.spawnBlueBossVirus(1, 1, 400, 400),
-            2000
-          );
+          return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
         case 3:
           return setTimeout(() => this.spawnGreenVirus(4, 4, 50, 50), 2000);
         case 4:
