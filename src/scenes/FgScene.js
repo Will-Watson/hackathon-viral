@@ -130,7 +130,8 @@ export default class FgScene extends Phaser.Scene {
     );
     //spawning initial viruses
     setTimeout(() => {
-      this.spawnGreenVirus(5, 8);
+      //this.spawnGreenVirus(5, 8);
+      this.spawnBlueVirus(1, 1);
     }, 3000);
 
     //scoreboard
