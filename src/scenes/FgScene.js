@@ -16,6 +16,9 @@ export default class FgScene extends Phaser.Scene {
     this.level = 1;
     this.levelText;
     this.bulletText;
+
+    this.follower;
+    this.path;
   }
 
   preload() {
@@ -62,8 +65,8 @@ export default class FgScene extends Phaser.Scene {
     });
     this.blueVirus = this.physics.add.group({
       classType: BlueVirus,
-      bounceX: 1.5,
-      bounceY: 1.5,
+      bounceX: 1,
+      bounceY: 1,
       collideWorldBounds: true,
     });
 
@@ -278,83 +281,65 @@ export default class FgScene extends Phaser.Scene {
     this.gameOver = true;
   }
 
-  spawnGreenVirus(min, max) {
+  spawnGreenVirus(min, max, speedX, speedY) {
     let randomViruses = Phaser.Math.Between(min, max);
 
     for (let i = 0; i < randomViruses; i++) {
       this.greenVirus
         .create(Phaser.Math.Between(30, 770), 30, 'greenVirus')
-        .setVelocity(
-          Phaser.Math.Between(-100, 100),
-          Phaser.Math.Between(-100, 100)
-        )
+        .setVelocity(speedX, speedY)
         .setScale(0.75)
         .setAngle(Phaser.Math.Between(-180, 180));
       this.greenVirus
         .create(770, Phaser.Math.Between(30, 570), 'greenVirus')
-        .setVelocity(
-          Phaser.Math.Between(-100, 100),
-          Phaser.Math.Between(-100, 100)
-        )
+        .setVelocity(speedX, speedY)
         .setScale(0.75)
         .setAngle(Phaser.Math.Between(-180, 180));
       this.greenVirus
         .create(0, Phaser.Math.Between(30, 570), 'greenVirus')
-        .setVelocity(
-          Phaser.Math.Between(-100, 100),
-          Phaser.Math.Between(-100, 100)
-        )
+        .setVelocity(speedX, speedY)
         .setScale(0.75)
         .setAngle(Phaser.Math.Between(-180, 180));
     }
   }
-  spawnYellowVirus(min, max) {
+  spawnYellowVirus(min, max, speedX, speedY) {
     let randomViruses = Phaser.Math.Between(min, max);
 
     for (let i = 0; i < randomViruses; i++) {
       this.yellowVirus
         .create(Phaser.Math.Between(30, 770), 30, 'yellowVirus')
-        .setVelocity(
-          Phaser.Math.Between(100, 200),
-          Phaser.Math.Between(100, 200)
-        )
+        .setVelocity(speedX, speedY)
         .setScale(0.75)
         .setAngle(Phaser.Math.Between(-180, 180));
       this.yellowVirus
         .create(770, Phaser.Math.Between(30, 570), 'yellowVirus')
-        .setVelocity(
-          Phaser.Math.Between(100, 200),
-          Phaser.Math.Between(100, 200)
-        )
+        .setVelocity(speedX, speedY)
         .setScale(0.75)
         .setAngle(Phaser.Math.Between(-180, 180));
       this.yellowVirus
         .create(0, Phaser.Math.Between(30, 570), 'yellowVirus')
-        .setVelocity(
-          Phaser.Math.Between(100, 200),
-          Phaser.Math.Between(100, 200)
-        )
+        .setVelocity(speedX, speedY)
         .setScale(0.75)
         .setAngle(Phaser.Math.Between(-180, 180));
     }
   }
-  spawnBlueVirus(min, max) {
+  spawnBlueVirus(min, max, speedX, speedY) {
     let randomViruses = Phaser.Math.Between(min, max);
 
     for (let i = 0; i < randomViruses; i++) {
       this.blueVirus
         .create(Phaser.Math.Between(30, 770), 30, 'blueVirus')
-        .setVelocity(Phaser.Math.Between(0, 50), Phaser.Math.Between(0, 50))
+        .setVelocity(speedX, speedY)
         .setScale(1)
         .setAngle(Phaser.Math.Between(-180, 180));
       this.blueVirus
         .create(770, Phaser.Math.Between(30, 570), 'blueVirus')
-        .setVelocity(Phaser.Math.Between(0, 50), Phaser.Math.Between(0, 50))
+        .setVelocity(speedX, speedY)
         .setScale(1)
         .setAngle(Phaser.Math.Between(-180, 180));
       this.blueVirus
         .create(0, Phaser.Math.Between(30, 570), 'blueVirus')
-        .setVelocity(Phaser.Math.Between(0, 50), Phaser.Math.Between(0, 50))
+        .setVelocity(speedX, speedY)
         .setScale(1)
         .setAngle(Phaser.Math.Between(-180, 180));
     }
