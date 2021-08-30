@@ -4,6 +4,7 @@ import Bullet from '../entities/Bullet';
 import GreenVirus from '../entities/GreenVirus';
 import YellowVirus from '../entities/YellowVirus';
 import BlueVirus from '../entities/BlueVirus';
+import Explosion from '../entities/Explosion';
 
 export default class FgScene extends Phaser.Scene {
   constructor() {
@@ -212,12 +213,15 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    enemy.disableBody(true, true);
+    enemy.destroy();
+
     if (enemy.texture.key === 'greenVirus') {
+      let explosion = new Explosion(this, enemy.x, enemy.y).setScale(0.75);
       this.score += 10;
       this.scoreText.setText('Score: ' + this.score);
       this.data.values.Score += 10;
     } else if (enemy.texture.key === 'yellowVirus') {
+      let explosion = new Explosion(this, enemy.x, enemy.y).setScale(1);
       this.score += 20;
       this.scoreText.setText('Score: ' + this.score);
     }
