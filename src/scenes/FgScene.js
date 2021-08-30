@@ -46,6 +46,8 @@ export default class FgScene extends Phaser.Scene {
     // Preload Sounds
     this.load.audio('shot', 'assets/audio/GunFire.wav');
     this.load.audio('gunLoad', 'assets/audio/ReloadSound.wav');
+    this.load.audio('vanquish', 'assets/audio/Vanquish.wav');
+    this.load.audio('explosion', 'assets/audio/Explosion.wav');
   }
 
   create() {
@@ -107,6 +109,8 @@ export default class FgScene extends Phaser.Scene {
     // Create sounds
     this.gunFireSound = this.sound.add('shot');
     this.gunLoad = this.sound.add('gunLoad');
+    this.vanquish = this.sound.add('vanquish');
+    this.explosion = this.sound.add('explosion');
 
     // Create collisions for all entities
     // << CREATE COLLISIONS HERE >>
@@ -251,6 +255,7 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
+    this.vanquish.play();
     if (enemy.texture.key === 'greenVirus' && enemy.scale === 0.75) {
       let explosion = new Explosion(this, enemy.x, enemy.y).setScale(0.75);
       this.score += 10;
@@ -461,6 +466,7 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hitVirus(player, virus) {
+    this.explosion.play();
     this.physics.pause();
     virus.setTint(0xff0000);
     player.disableBody(true, true);
