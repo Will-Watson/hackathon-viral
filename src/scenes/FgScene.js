@@ -60,6 +60,12 @@ export default class FgScene extends Phaser.Scene {
       bounceY: 1,
       collideWorldBounds: true,
     });
+    this.blueVirus = this.physics.add.group({
+      classType: BlueVirus,
+      bounceX: 1.5,
+      bounceY: 1.5,
+      collideWorldBounds: true,
+    });
 
     this.bullets = this.physics.add.group({
       classType: Bullet,
@@ -85,6 +91,13 @@ export default class FgScene extends Phaser.Scene {
       null,
       this
     );
+    this.physics.add.overlap(
+      this.bullets,
+      this.blueVirus,
+      this.hit,
+      null,
+      this
+    );
 
     // Create sounds
     // << CREATE SOUNDS HERE >>
@@ -92,6 +105,7 @@ export default class FgScene extends Phaser.Scene {
     // << CREATE COLLISIONS HERE >>
     this.physics.add.collider(this.greenVirus, this.greenVirus);
     this.physics.add.collider(this.yellowVirus, this.yellowVirus);
+    this.physics.add.collider(this.blueVirus, this.blueVirus);
 
     this.physics.add.collider(
       this.player,
@@ -103,6 +117,13 @@ export default class FgScene extends Phaser.Scene {
     this.physics.add.collider(
       this.player,
       this.yellowVirus,
+      this.hitVirus,
+      null,
+      this
+    );
+    this.physics.add.collider(
+      this.player,
+      this.blueVirus,
       this.hitVirus,
       null,
       this
@@ -222,17 +243,25 @@ export default class FgScene extends Phaser.Scene {
       let explosion = new Explosion(this, enemy.x, enemy.y).setScale(1);
       this.score += 20;
       this.scoreText.setText('Score: ' + this.score);
+    } else if (enemy.texture.key === 'blueVirus') {
+      let explosion = new Explosion(this, enemy.x, enemy.y)
+        .setScale(1.5)
+        .setTint(0x000ff);
+      this.score += 50;
+      this.scoreText.setText('Score: ' + this.score);
     }
 
     if (
       this.greenVirus.countActive(true) === 0 &&
-      this.yellowVirus.countActive(true) === 0
+      this.yellowVirus.countActive(true) === 0 &&
+      this.blueVirus.countActive(true) === 0
     ) {
       this.level += 1;
       this.levelText.setText('Level: ' + this.level);
       setTimeout(() => {
         this.spawnGreenVirus(5, 8);
         this.spawnYellowVirus(1, 3);
+        this.spawnBlueVirus(1, 1);
       }, 3000);
     }
   }
@@ -305,6 +334,27 @@ export default class FgScene extends Phaser.Scene {
           Phaser.Math.Between(100, 200)
         )
         .setScale(0.75)
+        .setAngle(Phaser.Math.Between(-180, 180));
+    }
+  }
+  spawnBlueVirus(min, max) {
+    let randomViruses = Phaser.Math.Between(min, max);
+
+    for (let i = 0; i < randomViruses; i++) {
+      this.blueVirus
+        .create(Phaser.Math.Between(30, 770), 30, 'blueVirus')
+        .setVelocity(Phaser.Math.Between(0, 50), Phaser.Math.Between(0, 50))
+        .setScale(1)
+        .setAngle(Phaser.Math.Between(-180, 180));
+      this.blueVirus
+        .create(770, Phaser.Math.Between(30, 570), 'blueVirus')
+        .setVelocity(Phaser.Math.Between(0, 50), Phaser.Math.Between(0, 50))
+        .setScale(1)
+        .setAngle(Phaser.Math.Between(-180, 180));
+      this.blueVirus
+        .create(0, Phaser.Math.Between(30, 570), 'blueVirus')
+        .setVelocity(Phaser.Math.Between(0, 50), Phaser.Math.Between(0, 50))
+        .setScale(1)
         .setAngle(Phaser.Math.Between(-180, 180));
     }
   }
