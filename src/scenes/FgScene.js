@@ -12,6 +12,7 @@ export default class FgScene extends Phaser.Scene {
     this.fireBullet = this.fireBullet.bind(this);
     this.hit = this.hit.bind(this);
     this.score = 0;
+    this.hitCount = 0;
     this.scoreText;
     this.level = 1;
     this.levelText;
@@ -133,9 +134,6 @@ export default class FgScene extends Phaser.Scene {
     //spawning initial viruses
     setTimeout(() => {
       this.spawnGreenVirus(2, 4, 50, 50);
-      this.spawnGreenBossVirus(1, 1, 200, 200);
-      this.spawnYellowBossVirus(1, 1, 200, 200);
-      this.spawnBlueBossVirus(1, 1, 200, 200);
     }, 3000);
 
     //scoreboard
@@ -237,15 +235,16 @@ export default class FgScene extends Phaser.Scene {
   }
 
   hit(bullet, enemy) {
-    if (enemy.texture.key === 'greenVirus') {
+    this.hitCount += 1;
+    if (enemy.texture.key === 'greenVirus' && enemy.scale === 0.75) {
       let explosion = new Explosion(this, enemy.x, enemy.y).setScale(0.75);
       this.score += 10;
       enemy.destroy();
-    } else if (enemy.texture.key === 'yellowVirus') {
+    } else if (enemy.texture.key === 'yellowVirus' && enemy.scale === 0.75) {
       let explosion = new Explosion(this, enemy.x, enemy.y).setScale(1);
       this.score += 20;
       enemy.destroy();
-    } else if (enemy.texture.key === 'blueVirus') {
+    } else if (enemy.texture.key === 'blueVirus' && enemy.scale === 1) {
       let explosion = new Explosion(this, enemy.x, enemy.y)
         .setScale(1.5)
         .setTint(0x000ff);
