@@ -281,6 +281,22 @@ export default class FgScene extends Phaser.Scene {
         this.hitCount = 0;
         enemy.destroy();
       }
+    } else if (enemy.texture.key === 'blueVirus' && enemy.scale === 4) {
+      this.hitCount += 1;
+      if (this.hitCount === 500) {
+        enemy.setTint(0xff7f7f);
+      }
+      if (this.hitCount === 900) {
+        enemy.setTint(0xff0000);
+      }
+      if (this.hitCount === 1000) {
+        let explosion = new Explosion(this, enemy.x, enemy.y)
+          .setScale(2.5)
+          .setTint(0xffff00);
+        this.score += 2000;
+        this.hitCount = 0;
+        enemy.destroy();
+      }
     }
     this.scoreText.setText('Score: ' + this.score);
 
@@ -296,10 +312,7 @@ export default class FgScene extends Phaser.Scene {
       //level specs
       switch (this.level) {
         case 2:
-          //return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
-          return setTimeout(() => {
-            this.spawnYellowBossVirus(1, 1, 300, 300);
-          }, 2000);
+          return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
         case 3:
           return setTimeout(() => this.spawnGreenVirus(4, 4, 50, 50), 2000);
         case 4:
@@ -349,8 +362,8 @@ export default class FgScene extends Phaser.Scene {
           }, 2000);
         case 15:
           return setTimeout(() => {
-            this.spawnGreenBossVirus(1, 1, 125, 125);
-            this.spawnGreenVirus(2, 2, 50, 50);
+            this.spawnGreenBossVirus(1, 1, 150, 150);
+            this.spawnGreenVirus(4, 4, 50, 50);
           }, 2000);
         case 16:
           return setTimeout(() => {
@@ -380,6 +393,48 @@ export default class FgScene extends Phaser.Scene {
           return setTimeout(() => {
             this.spawnYellowBossVirus(1, 1, 300, 300);
           }, 2000);
+        case 21:
+          return setTimeout(() => this.spawnGreenVirus(8, 8, 75, 75), 2000);
+        case 22:
+          return setTimeout(() => this.spawnYellowVirus(6, 6, 100, 100), 2000);
+        case 23:
+          return setTimeout(() => this.spawnBlueVirus(5, 5, 125, 125), 2000);
+        case 24:
+          return setTimeout(() => {
+            this.spawnGreenVirus(3, 3, 75, 75);
+            this.spawnYellowVirus(2, 2, 100, 100);
+            this.spawnBlueVirus(2, 2, 125, 125);
+          }, 2000);
+        case 25:
+          return setTimeout(() => {
+            this.spawnYellowBossVirus(1, 1, 200, 200);
+            this.spawnYellowVirus(4, 4, 100, 100);
+          }, 2000);
+        case 26:
+          return setTimeout(() => {
+            this.spawnGreenVirus(4, 4, 75, 75);
+            this.spawnYellowVirus(2, 2, 100, 100);
+            this.spawnBlueVirus(2, 2, 125, 125);
+          }, 2000);
+        case 27:
+          return setTimeout(() => {
+            this.spawnGreenVirus(3, 3, 75, 75);
+            this.spawnYellowVirus(2, 2, 100, 100);
+            this.spawnBlueVirus(3, 3, 125, 125);
+          }, 2000);
+        case 28:
+          return setTimeout(() => {
+            this.spawnGreenVirus(1, 1, 75, 75);
+            this.spawnYellowVirus(4, 4, 100, 100);
+            this.spawnBlueVirus(3, 3, 125, 125);
+          }, 2000);
+        case 29:
+          return setTimeout(() => {
+            this.spawnYellowBossVirus(1, 1, 250, 250);
+            this.spawnGreenBossVirus(2, 2, 150, 150);
+          }, 2000);
+        case 30:
+          return setTimeout(() => this.spawnBlueBossVirus(1, 1, 400, 400), 200);
       }
     }
   }
@@ -510,7 +565,7 @@ export default class FgScene extends Phaser.Scene {
       this.blueVirus
         .create(Phaser.Math.Between(30, 770), 30, 'blueVirus')
         .setVelocity(speedX, speedY)
-        .setScale(3)
+        .setScale(4)
         .setAngle(Phaser.Math.Between(-180, 180));
     }
   }
