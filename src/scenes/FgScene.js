@@ -442,6 +442,8 @@ export default class FgScene extends Phaser.Scene {
             () => this.spawnBlueBossVirus(1, 1, 400, 400),
             2000
           );
+        default:
+          setTimeout(() => this.spawnBlueBossVirus(1, 1, 450, 450), 2000);
       }
     }
   }
