@@ -15,9 +15,7 @@ export default class FgScene extends Phaser.Scene {
     this.scoreText;
     this.level = 1;
     this.levelText;
-    this.remainingBullets = Player.remainingBullets;
     this.bulletText;
-    this.hud;
   }
 
   preload() {
