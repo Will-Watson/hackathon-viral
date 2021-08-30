@@ -45,6 +45,7 @@ export default class FgScene extends Phaser.Scene {
     this.load.image('blueVirus', 'assets/sprites/BlueVirus.png');
     // Preload Sounds
     this.load.audio('shot', 'assets/audio/GunFire.wav');
+    this.load.audio('gunLoad', 'assets/audio/ReloadSound.wav');
   }
 
   create() {
@@ -105,6 +106,8 @@ export default class FgScene extends Phaser.Scene {
 
     // Create sounds
     this.gunFireSound = this.sound.add('shot');
+    this.gunLoad = this.sound.add('gunLoad');
+
     // Create collisions for all entities
     // << CREATE COLLISIONS HERE >>
     this.physics.add.collider(this.greenVirus, this.greenVirus);
@@ -209,7 +212,12 @@ export default class FgScene extends Phaser.Scene {
   }
 
   fireBullet(x, y, angle) {
-    this.gunFireSound.play();
+    if (this.player.remainingBullets > 1) {
+      this.gunFireSound.play();
+    }
+    if (this.player.remainingBullets === 1) {
+      this.gunLoad.play();
+    }
     let bulletX;
     let bulletY;
     if (this.player.angle === 0) {
