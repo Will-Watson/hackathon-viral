@@ -21,10 +21,46 @@ export default class FgScene extends Phaser.Scene {
     this.gameOverText;
     this.restartText;
     this.landingPage;
+
+    this.progressBar;
+    this.progressBox;
+    this.loadingText;
   }
 
   preload() {
     // Preload Sprites
+    this.progressBar = this.add.graphics();
+    this.progressBox = this.add.graphics();
+    this.progressBox.fillStyle(0x22222, 0.5);
+    this.progressBox.fillRect(240, 270, 320, 50);
+    const width = this.cameras.main.width;
+    const height = this.cameras.main.height;
+    this.loadingText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 50,
+      text: 'Loading...',
+      style: {
+        font: '20px monospace',
+        fill: '#00ff00',
+      },
+    });
+    this.loadingText.setOrigin(0.5, 0.5);
+
+    this.load.on('progress', (value) => {
+      this.progressBar.clear();
+      this.progressBar.fillStyle(0x00ff00, 1);
+      this.progressBar.fillRect(250, 280, 300 * value, 30);
+    });
+
+    this.load.on('fileProgress', (file) => {
+      console.log(file.src);
+    });
+
+    this.load.on('complete', () => {
+      this.progressBar.destroy();
+      this.progressBox.destroy();
+      this.loadingText.destroy();
+    });
 
     this.load.spritesheet(
       'soldierHandgun',
@@ -217,6 +253,9 @@ export default class FgScene extends Phaser.Scene {
       this.gunFireSound
     );
     this.bulletText.setText(this.player.remainingBullets + '/12');
+    this.progressBar.destroy();
+    this.progressBox.destroy();
+    this.loadingText.destroy();
   }
 
   fireBullet(x, y, angle) {
