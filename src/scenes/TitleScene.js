@@ -12,6 +12,8 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
+    console.log(this.backgroundMusic);
+
     this.add.image(400, 300, 'artery');
 
     this.titleText = this.add.text(280, 200, 'VIRAL', {

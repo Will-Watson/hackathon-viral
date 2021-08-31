@@ -20,7 +20,7 @@ export default class FgScene extends Phaser.Scene {
 
     this.gameOverText;
     this.restartText;
-    this.titleScreen;
+    this.landingPage;
   }
 
   preload() {
@@ -113,6 +113,7 @@ export default class FgScene extends Phaser.Scene {
     this.vanquish = this.sound.add('vanquish');
     this.explosion = this.sound.add('explosion');
     this.backgroundMusic = this.sound.add('backgroundMusic', { loop: true });
+
     this.backgroundMusic.play();
 
     // Create collisions for all entities
@@ -470,8 +471,8 @@ export default class FgScene extends Phaser.Scene {
 
   hitVirus(player, virus) {
     this.backgroundMusic.stop();
-    this.explosion.play();
     this.physics.pause();
+    this.explosion.play();
     virus.setTint(0xff0000);
     player.disableBody(true, true);
     let explosion = new Explosion(this, player.x, player.y)
@@ -487,17 +488,19 @@ export default class FgScene extends Phaser.Scene {
       font: '30px Courier',
       fill: '#00ff00',
     });
-    this.titleScreen = this.add.text(290, 450, 'Title Screen', {
+    this.landingPage = this.add.text(350, 450, 'Home', {
       font: '30px Courier',
       fill: '#00ff00',
     });
 
-    this.titleScreen.setInteractive({ useHandCursor: true });
-    this.titleScreen.on('pointerdown', () => {
-      this.scene.switch('TitleScene');
+    this.landingPage.setInteractive({ useHandCursor: true });
+    this.landingPage.on('pointerdown', () => {
+      this.scene.remove('MainScene');
+      window.location.href = 'index.html';
     });
 
-    this.input.once('pointerdown', () => {
+    this.restartText.setInteractive({ useHandCursor: true });
+    this.restartText.on('pointerdown', () => {
       this.level = 1;
       this.score = 0;
       this.scene.restart();
