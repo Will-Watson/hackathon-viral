@@ -259,7 +259,7 @@ export default class FgScene extends Phaser.Scene {
   }
 
   fireBullet(x, y, angle) {
-    if (this.player.remainingBullets > 1) {
+    if (this.player.remainingBullets > 0) {
       this.gunFireSound.play();
     }
     if (this.player.remainingBullets === 1) {
