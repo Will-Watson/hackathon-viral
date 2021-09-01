@@ -40,6 +40,10 @@ canvas {
   margin-top: 4rem;
 }
 
+.logo:hover {
+  -webkit-filter: invert(100%) !important;
+}
+
 /* ========================DEVELOPER======================== */
 
 .socials a {
