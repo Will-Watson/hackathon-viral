@@ -48,14 +48,9 @@ Viral is a web browser 2D Shoot 'em up game styled to resemble an old school arc
 
           npm install
           
-- Run the game with:
+- I recommend running the game from remote with Live Server from VSCode.
 
-          npm run start
-          
-- You will find the game ready to play on:
-
-          
-          localhost:8080
+[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
 # Special Thanks
 
