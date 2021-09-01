@@ -37,14 +37,12 @@ const createApp = () => {
 };
 
 const startListening = () => {
-  const server = app.listen(PORT, () =>
-    console.log(`Dropping the base on port ${PORT}`)
-  );
+  app.listen(PORT, () => console.log(`Dropping the base on port ${PORT}`));
 };
 
-async function bootApp() {
-  await createApp();
-  await startListening();
+function bootApp() {
+  createApp();
+  startListening();
 }
 
 if (require.main === module) {
