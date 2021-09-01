@@ -62,3 +62,10 @@ Viral is a web browser 2D Shoot 'em up game styled to resemble an old school arc
 - To Monarch and Navi from Mintbean for always supporting the community and giving me the opportunity to participate in this hackathon.
 - To the awesome users at OpenGameArt.org for providing awesome PNGs, and WAV files that are featured in the game.
 
+# Coming Features
+
+- Weapon drops.
+- Leader board.
+- Armor.
+- Possible screen clearing bombs.
+
