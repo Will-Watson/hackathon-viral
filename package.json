@@ -4,7 +4,7 @@
   "description": "game created for mintbean.io hackathon",
   "main": "src/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "webpack-dev-server"
   },
   "author": "William Watson",
   "license": "ISC",
