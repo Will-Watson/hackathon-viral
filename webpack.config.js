@@ -1,35 +1,30 @@
-const isDev = process.env.NODE_ENV === 'development';
+const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: isDev ? 'development' : 'production',
-  entry: [
-    '@babel/polyfill', // enables async-await
-    './src/index.js',
-  ],
+  entry: './src/index.js',
+
+  mode: 'development',
+
   output: {
-    path: __dirname,
-    filename: './public/bundle.js',
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/',
+    filename: 'bundle.js',
   },
-  // resolve: {
-  //   extensions: ['.js'],
-  // },
-  devtool: 'source-map',
-  watchOptions: {
-    ignored: /node_modules/,
-  },
+
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
+        test: [/\.vert$/, /\.frag$/],
+        use: 'raw-loader',
       },
     ],
   },
+
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      CANVAS_RENDERER: JSON.stringify(true),
+      WEBGL_RENDERER: JSON.stringify(true),
     }),
   ],
 };
