@@ -31,7 +31,7 @@ Viral is a web browser 2D Shoot 'em up game styled to resemble an old school arc
 - VS Code or any IDE supporting JavaScript.
 - Node.js 14 or higher.
 
-#Repository Directions
+# Repository Directions
 
 - Clone the repository.
 - If you wish to add your own features and push them up to your own repository, Fork it to your account first.
