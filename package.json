@@ -4,8 +4,7 @@
   "description": "game created for mintbean.io hackathon",
   "main": "src/index.js",
   "scripts": {
-    "start": "serve -s build",
-    "heroku-postbuild": "npm run build"
+    "start": "webpack-dev-server"
   },
   "author": "William Watson",
   "license": "ISC",
@@ -13,8 +12,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "bootstrap": "^5.1.0",
     "path": "^0.12.7",
-    "phaser": "^3.55.2",
-    "serve": "^12.0.0"
+    "phaser": "^3.55.2"
   },
   "devDependencies": {
     "raw-loader": "^4.0.2",
