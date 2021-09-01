@@ -544,7 +544,7 @@ export default class FgScene extends Phaser.Scene {
     this.landingPage.setInteractive({ useHandCursor: true });
     this.landingPage.on('pointerdown', () => {
       this.scene.remove('MainScene');
-      window.location.href = 'index.html';
+      window.location.href = 'hackathon-viral/index.html';
     });
 
     this.restartText.setInteractive({ useHandCursor: true });
