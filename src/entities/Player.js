@@ -13,8 +13,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.fireDelay = 500;
     this.lastFired = 0;
     this.remainingBullets = 12;
-
-    // << INITIALIZE PLAYER ATTRIBUTES HERE >>
   }
 
   updateMovement(cursors) {

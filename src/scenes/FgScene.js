@@ -79,6 +79,7 @@ export default class FgScene extends Phaser.Scene {
     this.load.image('greenVirus', 'assets/sprites/GreenVirus.png');
     this.load.image('yellowVirus', 'assets/sprites/YellowVirus.png');
     this.load.image('blueVirus', 'assets/sprites/BlueVirus.png');
+
     // Preload Sounds
     this.load.audio('shot', 'assets/audio/GunFire.wav');
     this.load.audio('gunLoad', 'assets/audio/ReloadSound.wav');
@@ -121,6 +122,8 @@ export default class FgScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.createAnimations();
 
+    //enemy hits
+
     this.physics.add.overlap(
       this.bullets,
       this.greenVirus,
@@ -153,7 +156,7 @@ export default class FgScene extends Phaser.Scene {
     this.backgroundMusic.play();
 
     // Create collisions for all entities
-    // << CREATE COLLISIONS HERE >>
+
     this.physics.add.collider(this.greenVirus, this.greenVirus);
     this.physics.add.collider(this.yellowVirus, this.yellowVirus);
     this.physics.add.collider(this.blueVirus, this.blueVirus);
@@ -180,11 +183,13 @@ export default class FgScene extends Phaser.Scene {
       this
     );
     //spawning initial viruses
+
     setTimeout(() => {
       this.spawnGreenVirus(2, 2, 50, 50);
     }, 3000);
 
     //scoreboard
+
     this.scoreText = this.add.text(16, 16, 'Score: 0', {
       font: '32px Courier',
       fill: '#00ff00',
@@ -199,6 +204,8 @@ export default class FgScene extends Phaser.Scene {
       fill: '#000',
     });
   }
+
+  //animations
 
   createAnimations() {
     this.anims.create({
@@ -370,10 +377,12 @@ export default class FgScene extends Phaser.Scene {
       this.blueVirus.countActive(true) === 0
     ) {
       //level incrementation
+
       this.level += 1;
       this.levelText.setText('Level: ' + this.level);
 
       //level specs
+
       switch (this.level) {
         case 2:
           return setTimeout(() => this.spawnGreenVirus(3, 3, 50, 50), 2000);
@@ -545,6 +554,8 @@ export default class FgScene extends Phaser.Scene {
       this.scene.restart();
     });
   }
+
+  //Virus spawn functions
 
   spawnGreenVirus(min, max, speedX, speedY) {
     let randomViruses = Phaser.Math.Between(min, max);

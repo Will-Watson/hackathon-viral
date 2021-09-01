@@ -6,12 +6,6 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
 
-  // devServer: {
-  //   contentBase: './public',
-  //   inline: true,
-  //   hot: true
-  // },
-
   mode: 'development',
 
   output: {
