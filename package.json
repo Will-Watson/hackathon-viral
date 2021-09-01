@@ -7,12 +7,17 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "author": "William Watson",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
     "bootstrap": "^5.1.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",

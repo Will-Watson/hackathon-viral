@@ -5,15 +5,15 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: [
     '@babel/polyfill', // enables async-await
-    './public/index.js',
+    './src/index.js',
   ],
   output: {
     path: __dirname,
     filename: './public/bundle.js',
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
+  // resolve: {
+  //   extensions: ['.js'],
+  // },
   devtool: 'source-map',
   watchOptions: {
     ignored: /node_modules/,
