@@ -5,7 +5,7 @@
   "engines": {
     "node": "~14.15.1"
   },
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server"
   },
