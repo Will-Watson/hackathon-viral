@@ -44,7 +44,7 @@ Viral is a web browser 2D Shoot 'em up game styled to resemble an old school arc
 
 - Clone the repository.
 - If you wish to add your own features and push them up to your own repository, Fork it to your account first.
-- Install all dependencies
+- Install all dependencies.
 
           npm install
           
