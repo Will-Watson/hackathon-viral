@@ -44,15 +44,6 @@ canvas {
 
 /* ========================INSTRUCTIONS======================== */
 
-.sub-header {
-  font-size: 5rem;
-  color: green;
-}
-
-.sub-header:hover {
-  color: blue;
-}
-
 /* ========================DEVELOPER======================== */
 
 .socials a {
