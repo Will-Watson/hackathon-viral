@@ -2,6 +2,9 @@
   "name": "hackathon-viral",
   "version": "1.0.0",
   "description": "game created for mintbean.io hackathon",
+  "engines": {
+    "node": "~14.15.1"
+  },
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server"
@@ -11,7 +14,9 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "bootstrap": "^5.1.0",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "path": "^0.12.7",
     "phaser": "^3.55.2"
   },
