@@ -11,7 +11,7 @@ Viral is a web browser 2D Shoot 'em up game styled to resemble an old school arc
 
 # Live Demo
 
-[Watch Me Lose!]https://youtu.be/8eeVAU3lw6E
+[Watch Me Lose]https://youtu.be/8eeVAU3lw6E
 
 # Deployment
 
