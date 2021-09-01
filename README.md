@@ -5,6 +5,7 @@ Viral is a web browser 2D Shoot 'em up game styled to resemble an old school arc
 <div align='center'>
      
   [![ViralBossWin.gif](https://s9.gifyu.com/images/ViralBossWin.gif)](https://gifyu.com/image/Gy9X)
+     ![ViralBossWin.gif](https://s9.gifyu.com/images/ViralBossWin.gif)
      
      
 </div>
