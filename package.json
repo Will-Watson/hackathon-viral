@@ -1,9 +1,6 @@
 {
   "name": "hackathon-viral",
   "version": "1.0.0",
-  "engines": {
-    "node": "14.15.1"
-  },
   "description": "game created for mintbean.io hackathon",
   "main": "src/index.js",
   "scripts": {
