@@ -9,6 +9,7 @@
   "author": "William Watson",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "bootstrap": "^5.1.0",
     "path": "^0.12.7",
     "phaser": "^3.55.2"

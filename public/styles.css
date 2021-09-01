@@ -13,15 +13,43 @@ body {
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
-.header {
-  font-size: 5rem;
-}
+/* ========================INSTRUCTIONS======================== */
 
-.header a {
-  text-decoration: none;
+/* .instructions-container {
+  background-color: red;
+} */
+
+.sub-header {
+  font-size: 5rem;
   color: green;
 }
 
-.header a:hover {
+.sub-header:hover {
+  color: blue;
+}
+
+/* ========================DEVELOPER======================== */
+
+.socials a {
+  color: red;
+  margin: 3rem;
+}
+
+.socials a:hover {
+  color: maroon;
+}
+
+/* ========================FOOTER======================== */
+
+.socket {
+  background-color: grey;
+}
+
+.socket a {
+  text-decoration: none;
+  color: white;
+}
+
+.socket a:hover {
   color: red;
 }
