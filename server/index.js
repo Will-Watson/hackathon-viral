@@ -29,7 +29,7 @@ const createApp = () => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'));
   });
 
-  app.use((err, req, res, next) => {
+  app.use((err, req, res) => {
     console.error(err);
     console.error(err.stack);
     res.status(err.status || 500).send(err.message || 'Internal server error.');
